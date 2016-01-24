@@ -30,12 +30,19 @@ values."
                       company-minimum-prefix-length 1
                       company-tooltip-align-annotations t
                       )
-     ;; (git :variables git-magit-status-fullscreen t)
+     (git :variables git-magit-status-fullscreen t)
      spacemacs-ivy
-     osx
+     ;; erc
      org
      colors
      emacs-lisp
+     osx
+     ;; eyebrowse
+     (wakatime :variables
+               wakatime-api-key  "a6babf16-5321-4f81-aabc-438b04e145ff"
+               wakatime-cli-path "/usr/local/bin/wakatime"
+               wakatime-python-bin "/usr/bin/python"
+               wakatime-init-started t)
      ;; themes-megapack
      ;; markdown
      ;; (org :variables org-enable-github-support t)
@@ -43,7 +50,7 @@ values."
      (go :variables company-go-show-annotation t)
      (rust :variables rust-enable-rustfmt-on-save t)
 
-     ;; version-control
+     version-control
      syntax-checking
      (spell-checking :variables spell-checking-enable-by-default nil)
      (shell :variables
@@ -54,8 +61,7 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(protobuf-mode
-                                      flycheck-protobuf)
+   dotspacemacs-additional-packages '(protobuf-mode)
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '(neotree)
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
@@ -88,7 +94,7 @@ values."
    ;; variable is `emacs' then the `holy-mode' is enabled at startup. `hybrid'
    ;; uses emacs key bindings for vim's insert mode, but otherwise leaves evil
    ;; unchanged. (default 'vim)
-   dotspacemacs-editing-style 'vim
+   dotspacemacs-editing-style 'hybrid
    ;; If non nil output loading progress in `*Messages*' buffer. (default nil)
    dotspacemacs-verbose-loading nil
    ;; Specify the startup banner. Default value is `official', it displays
@@ -111,12 +117,12 @@ values."
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(
-                         spacemacs-dark
                          solarized-dark
+                         solarized-light
+                         spacemacs-dark
+                         spacemacs-light
                          ;; sanityinc-tomorrow-night
                          ;; molokai
-                         ;; solarized-light
-                         ;; spacemacs-light
                          ;; zenburn
                          ;; monokai
                          )
@@ -149,7 +155,7 @@ values."
    ;; and TAB or <C-m> and RET.
    ;; In the terminal, these pairs are generally indistinguishable, so this only
    ;; works in the GUI. (default nil)
-   dotspacemacs-distinguish-gui-tab nil
+   dotspacemacs-distinguish-gui-tab t
    ;; If non nil `Y' is remapped to `y$' in Evil states. (default nil)
    dotspacemacs-remap-Y-to-y$ nil
    ;; If non nil, inverse the meaning of `g' in `:substitute' Evil ex-command.

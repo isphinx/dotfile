@@ -60,10 +60,11 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH=$PATH:/usr/local/mysql/bin
 export PATH=$PATH:/usr/bin
 
-export GOROOT=/usr/local/Cellar/go/1.5.1/libexec
+export GOROOT=/usr/local/Cellar/go/1.5.3/libexec
 export GOPATH=$HOME/code/go
-export GOBIN=$HOME/code/go/bin
-export PATH=$PATH:$GOPATH/bin
+export GOBIN=$GOPATH/bin
+export PATH=$PATH:$GOBIN
+
 export PATH=$PATH:$HOME/.cargo/bin
 export RUST_SRC_PATH=/Users/lucas/code/rust/rust-master/src
 
@@ -93,12 +94,9 @@ export RUST_SRC_PATH=/Users/lucas/code/rust/rust-master/src
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias tree="find . -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'"
 alias mmysql="mysql -h127.0.0.1 -uroot -p123456 -Ddb_traversing"
-alias gp="git pull origin lixin:lixin"
-alias gc="git push origin lixin:lixin"
 alias vi=nvim
 hash -d t1=~/code/mobarts/transfer/TTransfer
 hash -d t2=~/code/mobarts/traversing
-hash -d t3=~/code/go/src/engine
 
 function tr
 {
@@ -106,19 +104,8 @@ function tr
     open /Users/lucas/code/mobarts/transfer/TTransfer/runtime/mac/TTransfer\ Mac.app/Contents/MacOS/TTransfer\ Mac
 }
 
-function poto
-{
-    cd ~/code/mobarts/traversing/app/proto_file/proto/
-    protoc --python_out=.. *
-    cd ~/code/mobarts/traversing/tool/
-    python proto_to_one.py
-    cp ~/code/mobarts/traversing/proto/traversing_one.proto ~/code/mobarts/transfer/TTransfer/res/pb/traversing_one.proto
-    cd ~/code/mobarts/transfer/TTransfer/res/pb/
-    sh proto.sh
-}
-
 # Add environment variable COCOS_CONSOLE_ROOT for cocos2d-x
-export COCOS_CONSOLE_ROOT=/Users/lucas/code/cocos2d-x-3.3rc0/tools/cocos2d-console/bin
+# export COCOS_CONSOLE_ROOT=/Users/lucas/code/cocos2d-x-3.3rc0/tools/cocos2d-console/bin
 # export PATH=$COCOS_CONSOLE_ROOT:$PATH
 export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
