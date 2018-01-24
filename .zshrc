@@ -60,7 +60,7 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH=$PATH:/usr/local/mysql/bin
 export PATH=$PATH:/usr/bin
 
-export GOROOT=/usr/local/Cellar/go/1.5.3/libexec
+export GOROOT=/usr/local/Cellar/go/1.8.3/libexec
 export GOPATH=$HOME/code/go
 export GOBIN=$GOPATH/bin
 export PATH=$PATH:$GOBIN
@@ -109,3 +109,5 @@ function tr
 # export PATH=$COCOS_CONSOLE_ROOT:$PATH
 export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
+source .bash_profile
+export PATH="/usr/local/opt/texinfo/bin:$PATH"
