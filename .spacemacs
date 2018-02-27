@@ -36,7 +36,7 @@ This function should only modify configuration layer settings."
    '(
      markdown
      ivy
-     javascript
+     ;; javascript
      html
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
@@ -51,11 +51,12 @@ This function should only modify configuration layer settings."
                       company-tooltip-align-annotations t
                       )
      (git :variables git-magit-status-fullscreen t)
+     themes-megapack
      ;; erc
      org
      colors
      emacs-lisp
-     ;; osx
+     osx
      ;; wakatime
      ;; (wakatime :variables
      ;;           wakatime-api-key  "a6babf16-5321-4f81-aabc-438b04e145ff"
@@ -69,7 +70,9 @@ This function should only modify configuration layer settings."
      ;;        c-c++-enable-clang-support t)
 
      (python :variables python-enable-yapf-format-on-save t)
-     (go :variables company-go-show-annotation t)
+     (go :variables
+         company-go-show-annotation t
+         go-tab-width 4)
      rust
 
      version-control
@@ -164,17 +167,17 @@ It should only modify the values of Spacemacs settings."
    ;; by your Emacs build.
    ;; If the value is nil then no banner is displayed. (default 'official)
    dotspacemacs-startup-banner nil
+
    ;; List of items to show in startup buffer or an association list of
    ;; the form `(list-type . list-size)`. If nil then it is disabled.
    ;; Possible values for list-type are:
    ;; `recents' `bookmarks' `projects' `agenda' `todos'.
    ;; List sizes may be nil, in which case
    ;; `spacemacs-buffer-startup-lists-length' takes effect.
-   dotspacemacs-startup-lists '((recents . 5)
-                                (projects . 7))
+   dotspacemacs-startup-lists nil
 
    ;; True if the home buffer should respond to resize events. (default t)
-   dotspacemacs-startup-buffer-responsive t
+   dotspacemacs-startup-buffer-responsive nil
 
    ;; Default major mode of the scratch buffer (default `text-mode')
    dotspacemacs-scratch-mode 'text-mode
@@ -196,7 +199,7 @@ It should only modify the values of Spacemacs settings."
    ;; to create your own spaceline theme. Value can be a symbol or list with\
    ;; additional properties.
    ;; (default '(spacemacs :separator wave :separator-scale 1.5))
-   dotspacemacs-mode-line-theme '(spacemacs :separator wave :separator-scale 1.5)
+   dotspacemacs-mode-line-theme '(spacemacs :separator)
 
    ;; If non-nil the cursor color matches the state color in GUI Emacs.
    ;; (default t)
@@ -205,10 +208,10 @@ It should only modify the values of Spacemacs settings."
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
    dotspacemacs-default-font '("Source Code Pro"
-                               :size 13
-                               :weight light
-                               :width normal
-                               :powerline-scale 1.1)
+                               :size 12
+                               :weight normal
+                               :width normal)
+
    ;; The leader key (default "SPC")
    dotspacemacs-leader-key "SPC"
 
@@ -325,7 +328,7 @@ It should only modify the values of Spacemacs settings."
    ;; If non-nil a progress bar is displayed when spacemacs is loading. This
    ;; may increase the boot time on some systems and emacs builds, set it to
    ;; nil to boost the loading time. (default t)
-   dotspacemacs-loading-progress-bar t
+   dotspacemacs-loading-progress-bar nil
 
    ;; If non-nil the frame is fullscreen when Emacs starts up. (default nil)
    ;; (Emacs 24.4+ only)
@@ -362,7 +365,7 @@ It should only modify the values of Spacemacs settings."
    ;; If non-nil smooth scrolling (native-scrolling) is enabled. Smooth
    ;; scrolling overrides the default behavior of Emacs which recenters point
    ;; when it reaches the top or bottom of the screen. (default t)
-   dotspacemacs-smooth-scrolling t
+   dotspacemacs-smooth-scrolling nil
 
    ;; Control line numbers activation.
    ;; If set to `t' or `relative' line numbers are turned on in all `prog-mode' and
@@ -377,7 +380,7 @@ It should only modify the values of Spacemacs settings."
    ;;                       text-mode
    ;;   :size-limit-kb 1000)
    ;; (default nil)
-   dotspacemacs-line-numbers nil
+   dotspacemacs-line-numbers `t
 
    ;; Code folding method. Possible values are `evil' and `origami'.
    ;; (default 'evil)
@@ -459,17 +462,17 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
   )
 
 (defun dotspacemacs/user-config ()
-  "Configuration function for user code.
-This function is called at the very end of Spacemacs initialization after
-layers configuration.
-This is the place where most of your configurations should be done. Unless it is
-explicitly specified that a variable should be set before a package is loaded,
-you should place your code here."
-  (setq-default evil-escape-key-sequence "jk"
-                evil-escape-delay 0.7)
+  "Configuration for user code:
+This function is called at the very end of Spacemacs startup, after layer
+configuration.
+Put your configuration code here, except for variables that should be set
+before packages are loaded."
+  (setq-default evil-escape-key-sequence "jk" evil-escape-delay 0.7)
   (setq powerline-default-separator 'nil)
   (spacemacs/toggle-mode-line-battery)
-  (spacemacs/toggle-automatic-symbol-highlight-on))
+  (spacemacs/toggle-display-time-on)
+  (spacemacs/toggle-automatic-symbol-highlight-on)
+  )
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.

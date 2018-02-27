@@ -18,7 +18,7 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH=$PATH:/usr/local/mysql/bin
 export PATH=$PATH:/usr/bin
 
-export GOROOT=/usr/local/Cellar/go/1.8.3/libexec
+export GOROOT=/usr/local/Cellar/go/1.10/libexec
 export GOPATH=$HOME/code/go
 export GOBIN=$GOPATH/bin
 export PATH=$PATH:$GOBIN

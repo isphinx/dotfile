@@ -60,13 +60,13 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH=$PATH:/usr/local/mysql/bin
 export PATH=$PATH:/usr/bin
 
-export GOROOT=/usr/local/Cellar/go/1.8.3/libexec
-export GOPATH=$HOME/code/go
-export GOBIN=$GOPATH/bin
-export PATH=$PATH:$GOBIN
+# export GOROOT=/usr/local/Cellar/go/1.9.3/libexec
+# export GOPATH=$HOME/code/go
+# export GOBIN=$GOPATH/bin
+# export PATH=$PATH:$GOBIN
 
-export PATH=$PATH:$HOME/.cargo/bin
-export RUST_SRC_PATH=/Users/lucas/code/rust/rust-master/src
+# export PATH=$PATH:$HOME/.cargo/bin
+# export RUST_SRC_PATH=/Users/lucas/code/rust/rust-master/src
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -94,7 +94,7 @@ export RUST_SRC_PATH=/Users/lucas/code/rust/rust-master/src
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias tree="find . -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'"
 alias mmysql="mysql -h127.0.0.1 -uroot -p123456 -Ddb_traversing"
-alias vi=nvim
+# alias vi=nvim
 hash -d t1=~/code/mobarts/transfer/TTransfer
 hash -d t2=~/code/mobarts/traversing
 

@@ -1,4 +1,4 @@
-set rtp+=~/.config/nvim/bundle/neobundle.vim/
+set rtp+=~/.vim/bundle/neobundle.vim/
 call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'Lokaltog/vim-easymotion'
@@ -21,12 +21,12 @@ NeoBundle 'zchee/deoplete-go'
 NeoBundle 'Shougo/deoplete.nvim'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/vimproc.vim'
-NeoBundle 'Shougo/vimfiler.vim'
+"NeoBundle 'Shougo/vimfiler.vim'
 NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'sgur/unite-qf'
 NeoBundle 'Shougo/neosnippet.vim'
 NeoBundle 'Shougo/neosnippet-snippets'
-NeoBundle 'davidhalter/jedi-vim'
+"NeoBundle 'davidhalter/jedi-vim'
 call neobundle#end()
 
 filetype plugin indent on
@@ -50,6 +50,7 @@ set clipboard+=unnamedplus
 set foldcolumn=2
 set foldmethod=indent
 set foldlevel=5
+set mouse=a
 syntax on
 colorscheme kalisi
 set background=dark
@@ -60,8 +61,8 @@ set softtabstop=4
 let mapleader=" "
 
 imap jk <esc>
-map <silent> <leader>ss :source ~/.config/nvim/init.vim<cr>
-map <silent> <leader>ee :e ~/.config/nvim/init.vim<cr>
+"map <silent> <leader>ss :source ~/.config/nvim/init.vim<cr>
+"map <silent> <leader>ee :e ~/.config/nvim/init.vim<cr>
 nmap <leader>h <c-w>h
 nmap <leader>l <c-w>l
 nmap <leader>j <c-w>j
@@ -101,10 +102,10 @@ let g:syntastic_auto_jump = 0
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_idx_mode = 1
 let g:airline#extensions#tabline#buffer_min_count = 2
-let g:airline_left_sep = '⮀'
-let g:airline_left_alt_sep = '⮁'
-let g:airline_right_sep = '⮂'
-let g:airline_right_alt_sep = '⮃'
+"let g:airline_left_sep = '⮀'
+"let g:airline_left_alt_sep = '⮁'
+"let g:airline_right_sep = '⮂'
+"let g:airline_right_alt_sep = '⮃'
 
 highlight  CursorLine ctermbg=Green ctermfg=None
 autocmd InsertEnter * highlight  CursorLine ctermbg=blue ctermfg=Red
