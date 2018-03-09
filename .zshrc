@@ -6,7 +6,7 @@ export ZSH=$HOME/.oh-my-zsh
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 # ZSH_THEME="re5et"
-ZSH_THEME="amuse"
+ZSH_THEME="wedisagree"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -50,23 +50,11 @@ ZSH_THEME="amuse"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git git-flow jump osx themes rvm brew go)
+plugins=(themes brew go)
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
-
-export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH=$PATH:/usr/local/mysql/bin
-export PATH=$PATH:/usr/bin
-
-# export GOROOT=/usr/local/Cellar/go/1.9.3/libexec
-# export GOPATH=$HOME/code/go
-# export GOBIN=$GOPATH/bin
-# export PATH=$PATH:$GOBIN
-
-# export PATH=$PATH:$HOME/.cargo/bin
-# export RUST_SRC_PATH=/Users/lucas/code/rust/rust-master/src
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -107,7 +95,5 @@ function tr
 # Add environment variable COCOS_CONSOLE_ROOT for cocos2d-x
 # export COCOS_CONSOLE_ROOT=/Users/lucas/code/cocos2d-x-3.3rc0/tools/cocos2d-console/bin
 # export PATH=$COCOS_CONSOLE_ROOT:$PATH
-export LC_CTYPE=en_US.UTF-8
-export LC_ALL=en_US.UTF-8
-source .bash_profile
-export PATH="/usr/local/opt/texinfo/bin:$PATH"
+
+source ~/.bash_profile

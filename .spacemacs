@@ -29,20 +29,22 @@ This function should only modify configuration layer settings."
    ;; If non-nil layers with lazy install support are lazy installed.
    ;; List of additional paths where to look for configuration layers.
    ;; Paths must have a trailing slash (i.e. `~/.mycontribs/')
-   dotspacemacs-configuration-layer-path '()
+   dotspacemacs-configuration-layer-path '("~/.emacs.d/private/")
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
-     markdown
-     ivy
-     ;; javascript
-     html
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
      ;; `M-m f e R' (Emacs style) to install them.
      ;; ----------------------------------------------------------------
+     ;; themes-megapack
+     treemacs
+     colors
+     ivy
+     lsp
+
      (auto-completion :variables
                       auto-completion-enable-help-tooltip t
                       auto-completion-enable-snippets-in-popup t
@@ -51,35 +53,29 @@ This function should only modify configuration layer settings."
                       company-tooltip-align-annotations t
                       )
      (git :variables git-magit-status-fullscreen t)
-     themes-megapack
-     ;; erc
+
      org
-     colors
      emacs-lisp
+
+     ;; javascript
+     ;; html
      osx
-     ;; wakatime
      ;; (wakatime :variables
      ;;           wakatime-api-key  "a6babf16-5321-4f81-aabc-438b04e145ff"
      ;;           wakatime-cli-path "/usr/local/bin/wakatime")
-     ;; themes-megapack
-     ;; markdown
+     markdown
      ;; (org :variables org-enable-github-support t)
-     ;; irony
      ;; (c-c++ :variables
      ;;        c-c++-default-mode-for-headers 'c++-mode
      ;;        c-c++-enable-clang-support t)
 
-     (python :variables python-enable-yapf-format-on-save t)
-     (go :variables
-         company-go-show-annotation t
-         go-tab-width 4)
+     ;; (python :variables python-enable-yapf-format-on-save t)
+     (go :variables company-go-show-annotation t go-tab-width 4)
      rust
+     swift
 
      version-control
      syntax-checking
-     (spell-checking :variables
-                     spell-checking-enable-by-default nil
-                     spell-checking-enable-auto-dictionary t)
      (shell :variables
             shell-default-term-shell "/bin/zsh"
             shell-default-position 'full)
@@ -129,9 +125,15 @@ It should only modify the values of Spacemacs settings."
    ;; (default 5)
    dotspacemacs-elpa-timeout 5
 
+   ;; Set `gc-cons-threshold' and `gc-cons-percentage' when startup finishes.
+   ;; This is an advanced option and should not be changed unless you suspect
+   ;; performance issues due to garbage collection operations.
+   ;; (default '(100000000 0.1))
+   dotspacemacs-gc-cons '(100000000 0.1)
+
    ;; If non-nil then Spacelpa repository is the primary source to install
-   ;; a locked version of packages. If nil then Spacemacs will install the lastest
-   ;; version of packages from MELPA. (default nil)
+   ;; a locked version of packages. If nil then Spacemacs will install the
+   ;; latest version of packages from MELPA. (default nil)
    dotspacemacs-use-spacelpa nil
 
    ;; If non-nil then verify the signature for downloaded Spacelpa archives.
@@ -177,7 +179,7 @@ It should only modify the values of Spacemacs settings."
    dotspacemacs-startup-lists nil
 
    ;; True if the home buffer should respond to resize events. (default t)
-   dotspacemacs-startup-buffer-responsive nil
+   dotspacemacs-startup-buffer-responsive t
 
    ;; Default major mode of the scratch buffer (default `text-mode')
    dotspacemacs-scratch-mode 'text-mode
@@ -189,8 +191,9 @@ It should only modify the values of Spacemacs settings."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(spacemacs-dark
-                         spacemacs-light)
+   dotspacemacs-themes '(solarized-dark
+                         solarized-light
+                         )
 
    ;; Set the theme for the Spaceline. Supported themes are `spacemacs',
    ;; `all-the-icons', `custom', `vim-powerline' and `vanilla'. The first three
@@ -199,7 +202,7 @@ It should only modify the values of Spacemacs settings."
    ;; to create your own spaceline theme. Value can be a symbol or list with\
    ;; additional properties.
    ;; (default '(spacemacs :separator wave :separator-scale 1.5))
-   dotspacemacs-mode-line-theme '(spacemacs :separator)
+   dotspacemacs-mode-line-theme '(spacemacs :separator nil :separator-scale 1.0)
 
    ;; If non-nil the cursor color matches the state color in GUI Emacs.
    ;; (default t)
@@ -281,7 +284,7 @@ It should only modify the values of Spacemacs settings."
    ;; auto-save the file in-place, `cache' to auto-save the file to another
    ;; file stored in the cache directory and `nil' to disable auto-saving.
    ;; (default 'cache)
-   dotspacemacs-auto-save-file-location 'cache
+   dotspacemacs-auto-save-file-location nil
 
    ;; Maximum number of rollback slots to keep in the cache. (default 5)
    dotspacemacs-max-rollback-slots 5
@@ -400,6 +403,9 @@ It should only modify the values of Spacemacs settings."
    ;; emphasis the current one). (default 'all)
    dotspacemacs-highlight-delimiters 'all
 
+   ;; If non-nil, start an Emacs server if one is not already running.
+   dotspacemacs-enable-server t
+
    ;; If non-nil, advise quit functions to keep server open when quitting.
    ;; (default nil)
    dotspacemacs-persistent-server nil
@@ -408,11 +414,6 @@ It should only modify the values of Spacemacs settings."
    ;; tool of the list. Supported tools are `rg', `ag', `pt', `ack' and `grep'.
    ;; (default '("rg" "ag" "pt" "ack" "grep"))
    dotspacemacs-search-tools '("rg" "ag" "pt" "ack" "grep")
-
-   ;; The default package repository used if no explicit repository has been
-   ;; specified with an installed package.
-   ;; Not used for now. (default nil)
-   dotspacemacs-default-package-repository nil
 
    ;; Format specification for setting the frame title.
    ;; %a - the `abbreviated-file-name', or `buffer-name'
@@ -459,6 +460,10 @@ This function is called immediately after `dotspacemacs/init', before layer
 configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
+  ;; (setq configuration-layer--elpa-archives
+  ;;       '(("melpa-cn" . "http://elpa.zilongshanren.com/melpa/")
+  ;;         ("org-cn"   . "http://elpa.zilongshanren.com/org/")
+  ;;         ("gnu-cn"   . "http://elpa.zilongshanren.com/gnu/")))
   )
 
 (defun dotspacemacs/user-config ()
@@ -467,10 +472,10 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
-  (setq-default evil-escape-key-sequence "jk" evil-escape-delay 0.7)
+  (setq-default evil-escape-key-sequence "jl" evil-escape-delay 0.7)
   (setq powerline-default-separator 'nil)
-  (spacemacs/toggle-mode-line-battery)
-  (spacemacs/toggle-display-time-on)
+  ;; (spacemacs/toggle-mode-line-battery)
+  ;; (spacemacs/toggle-display-time-on)
   (spacemacs/toggle-automatic-symbol-highlight-on)
   )
 
