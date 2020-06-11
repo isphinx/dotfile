@@ -1,0 +1,21 @@
+add_newline = false
+
+[git_branch]
+symbol = "🌱 "
+truncation_length = 6
+truncation_symbol = ""
+
+[git_commit]
+commit_hash_length = 4
+
+[time]
+disabled = false
+format = "🕙[ %T ]"
+utc_time_offset = "-5"
+
+[cmd_duration]
+min_time = 500
+prefix = "underwent "
+
+[directory]
+truncation_length = 8
