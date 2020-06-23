@@ -102,7 +102,7 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 # alias tree="find . -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'"
 # alias mmysql="mysql -h127.0.0.1 -uroot -p123456 -Ddb_traversing"
-# alias co="open -a \"Visual Studio Code\""
+alias co="open -a \"Visual Studio Code\""
 alias fzf="sk"
 # alias vi=nvim
 hash -d t1=~/code/mobarts/transfer/TTransfer
@@ -136,6 +136,8 @@ export FZF_DEFAULT_COMMAND='rg --files --hidden --smartcase --glob "!.git/*"'
 export OPENSSL_DIR="/usr/local/opt/libressl"
 export FZF_DEFAULT_COMMAND="find . | sk -m"
 export PATH=$PATH:"/Users/lucas/.emacs.d/bin/"
+
+alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
 export ZSH_HIGHLIGHT_HIGHLIGHTERS_DIR=/usr/local/share/zsh-syntax-highlighting/highlighters
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
