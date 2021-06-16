@@ -37,7 +37,7 @@ let termdebugger = "lldb"
 imap jl <esc>
 map <silent> <leader>ss :source ~/.vimrc<cr>
 map <silent> <leader>ee :e ~/.vimrc<cr>
-map <silent> <leader>w :w<cr>
+map <silent> <leader>fs :w<cr>
 map <silent> <leader>d :bd<cr>
 nmap <leader>h <c-w>h
 nmap <leader>l <c-w>l

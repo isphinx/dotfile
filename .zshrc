@@ -68,7 +68,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(cargo ripgrep fd rust vscode brew golang git jump)
+plugins=(cargo ripgrep fd rust vscode brew golang git z)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -104,9 +104,8 @@ source $ZSH/oh-my-zsh.sh
 # alias mmysql="mysql -h127.0.0.1 -uroot -p123456 -Ddb_traversing"
 alias co="open -a \"Visual Studio Code\""
 alias fzf="sk"
-# alias vi=nvim
-hash -d t1=~/code/mobarts/transfer/TTransfer
-hash -d t2=~/code/mobarts/traversing
+alias vi=nvim
+alias rm="trash"
 hash -d code=~/code
 
 function t()
@@ -116,6 +115,11 @@ function t()
   else
     find $1 -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'
   fi
+}
+
+function ms()
+{
+  zsh $(fd -I sh ~/.pem | sk --preview-window up:60% --preview "bat --color=always --style=numbers {}")
 }
 
 function tr
