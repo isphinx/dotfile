@@ -85,8 +85,8 @@ require('nvim-treesitter.configs').setup {
   autopairs = {enable = true},
   rainbow = {
     enable = true,
-    extended_mode = true, -- Highlight also non-parentheses delimiters, boolean or table: lang -> boolean
-    max_file_lines = 1000, -- Do not enable for files with more than 1000 lines, int
+    extended_mode = true,
+    max_file_lines = 1000,
   },
 }
 
@@ -117,17 +117,17 @@ vim.cmd([[
   let g:indent_blankline_use_treesitter = v:true
   let g:indent_blankline_filetype_exclude = ['help','dashboard','dashpreview','NvimTree','coc-explorer','startify','vista','sagahover']
 
-  highlight IndentBlanklineChar1 guibg=#2E3F00 guifg=#788898 gui=nocombine
-  highlight IndentBlanklineChar2 guibg=#003A00 guifg=#788898 gui=nocombine
-  highlight IndentBlanklineChar3 guibg=#33003C guifg=#788898 gui=nocombine
-  highlight IndentBlanklineChar4 guibg=#002B2F guifg=#788898 gui=nocombine
-  highlight IndentBlanklineSpaceChar1 guibg=#2E3F00 gui=nocombine
-  highlight IndentBlanklineSpaceChar2 guibg=#003A00 gui=nocombine
-  highlight IndentBlanklineSpaceChar3 guibg=#33003C gui=nocombine
-  highlight IndentBlanklineSpaceChar4 guibg=#002B2F gui=nocombine
+  hi IndentChar1 guibg=#2E3F00 guifg=#788898 gui=nocombine
+  hi IndentChar2 guibg=#003A00 guifg=#788898 gui=nocombine
+  hi IndentChar3 guibg=#33003C guifg=#788898 gui=nocombine
+  hi IndentChar4 guibg=#002B2F guifg=#788898 gui=nocombine
+  hi IndentSpaceChar1 guibg=#2E3F00 gui=nocombine
+  hi IndentSpaceChar2 guibg=#003A00 gui=nocombine
+  hi IndentSpaceChar3 guibg=#33003C gui=nocombine
+  hi IndentSpaceChar4 guibg=#002B2F gui=nocombine
 
-  let g:indent_blankline_char_highlight_list = ['IndentBlanklineChar1', 'IndentBlanklineChar2', 'IndentBlanklineChar3', 'IndentBlanklineChar4']
-  let g:indent_blankline_space_char_highlight_list = ['IndentBlanklineSpaceChar1', 'IndentBlanklineSpaceChar2', 'IndentBlanklineSpaceChar3', 'IndentBlanklineSpaceChar4']
+  let g:indent_blankline_char_highlight_list = ['IndentChar1', 'IndentChar2', 'IndentChar3', 'IndentChar4']
+  let g:indent_blankline_space_char_highlight_list = ['IndentSpaceChar1', 'IndentSpaceChar2', 'IndentSpaceChar3', 'IndentSpaceChar4']
   let g:indent_blankline_show_trailing_blankline_indent=v:false
 ]])
 
@@ -151,23 +151,30 @@ require("neogit").setup {
   -- customize displayed signs
   signs = {
     -- { CLOSED, OPENED }
-    section = { ">", "v" },
-    item = { ">", "v" },
-    hunk = { "", "" },
+    section = { "", "" },
+    item = { "", "" },
+    hunk = { "", "" },
   },
-  integrations = {
-    -- Neogit only provides inline diffs. If you want a more traditional way to look at diffs, you can use `sindrets/diffview.nvim`.
-    -- The diffview integration enables the diff popup, which is a wrapper around `sindrets/diffview.nvim`.
-    --
-    -- Requires you to have `sindrets/diffview.nvim` installed.
-    -- use { 
-    --   'TimUntersberger/neogit', 
-    --   requires = { 
-    --     'nvim-lua/plenary.nvim',
-    --     'sindrets/diffview.nvim' 
-    --   }
-    -- }
-    --
-    diffview = false  
-  },
+};
+
+
+local dap = require('dap')
+vim.fn.sign_define('DapBreakpoint', {text='🔴', texthl='', linehl='TSDanger', numhl=''})
+vim.fn.sign_define('DapStopped', {text='🟢', texthl='', linehl='TSNote', numhl=''})
+vim.g.dap_virtual_text = 'all frames';
+
+dap.adapters.php = {
+  type = 'executable',
+  command = 'node',
+  args = { '/Users/lucas/.vscode/extensions/felixfbecker.php-debug-1.16.1/out/phpDebug.js' }
 }
+
+dap.configurations.php = {
+  {
+    type = 'php',
+    request = 'launch',
+    name = 'Listen for Xdebug',
+    port = 8000
+  }
+}
+

@@ -18,25 +18,18 @@ Api.nvim_set_var('mapleader', ' ')
 -- Additional options for mappings
 local opts = { silent = true }
 
----[[-----------------]]---
 --    LSP Keybindings    --
----]]-----------------[[---
-
--- https://github.com/hrsh7th/nvim-compe#mappings
 Map('i', '<expr> <C-Space>', Fn['compe#complete'](), opts)
 Map('i', '<expr> <CR>', Fn['compe#confirm']('<CR>'), opts)
 Map('i', '<expr> <C-e>', Fn['compe#close']('<C-e>'), opts)
 Map('i', '<expr> <C-f>', Fn['compe#scroll']({ delta = '+4' }), opts)
 Map('i', '<expr> <C-d>', Fn['compe#scroll']({ delta = '-4' }), opts)
--- Map('n', 'gR', ':Gitsigns reset_hunk<CR>', opts)
 Map('n', 'gh', ':Gitsigns preview_hunk<CR>', opts)
--- Map('n', 'gb', ':Gitsigns blame_line<CR>', opts)
 Map('n', 'gcc', '<Plug>kommentary_line_increase', opts)
 Map('v', 'gc', '<Plug>kommentary_visual_default', opts)
 Map('n', 'gd', ':lua vim.lsp.buf.definition()<CR>', opts) -- gd: jump to definitionA
 Map('n', 'gr', ':Lspsaga lsp_finder<CR>', opts) -- gr: go to reference
 Map('n', 'gi', ':lua vim.lsp.buf.implementation()<CR>', opts) -- gi: buf implementation
--- Map('n', 'gs', ':lua require("lspsaga.floaterm").open_float_terminal("lazygit")<CR>', opts) -- gi: buf implementation
 Map('n', 'ca', ':Lspsaga code_action<CR>', opts) -- ca: code actions
 Map('n', '<C-q>', ':Lspsaga close_floaterm<CR>', opts) -- gi: buf implementation
 Map('n', 'K', ':Lspsaga hover_doc<CR>', opts) -- K: hover doc
@@ -46,8 +39,12 @@ Map('n', '<C-f>', ':lua require("lspsaga.action").smart_scroll_with_saga(1)<CR>'
 Map('n', '<C-b>', "lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>") -- Control+b: Scroll up documents
 Cmd('command! -nargs=0 LspVirtualTextToggle lua require("lsp/virtual_text").toggle()')
 
-Map('n', '<Tab>', ':bp<CR>', opts)   -- TAB to cycle buffers too, why not?
-Map('n', '<esc>', ':noh<CR>', opts)     -- ESC to turn off search highlighting
+Map('n', '<S-k>', ':lua require("dap").step_out()<CR>', opts)
+Map('n', '<S-l>', ':lua require("dap").step_into()<CR>', opts)
+Map('n', '<S-j>', ':lua require("dap").step_over()<CR>', opts)
+
+Map('n', '<Tab>', ':bp<CR>', opts)
+Map('n', '<esc>', ':noh<CR>', opts)
 
 ---[[-----------------]]---
 --     Escape Remaps     --
@@ -111,10 +108,39 @@ wk.register({
   ['<leader>'] = {
     g = {
       name = '+git',
-      r = { ':Gitsigns reset_hunk<CR>', 'Reset hunk' },
-      h = { ':Gitsigns preview_hunk<CR>', 'Preview hunk' },
-      b = { ':Gitsigns blame_line<CR>', 'Blame line' },
+      r = { ':Gitsigns reset_hunk<CR>', 'Reset Hunk' },
+      h = { ':Gitsigns preview_hunk<CR>', 'Preview Hunk' },
+      b = { ':Gitsigns blame_line<CR>', 'Blame Line' },
       s = { ':Neogit kind=vsplit<CR>', 'Neogit' },
+    },
+  },
+})
+
+-- Debug
+wk.register({
+  ['<leader>'] = {
+    d = {
+      name = '+debug',
+      s = {':lua require"dap".stop()<CR>', 'Stop Debug'},
+      l = {':lua require"dap".continue()<CR>', 'Start Debug'},
+      b = {':lua require"dap".toggle_breakpoint()<CR>', 'Breakpoint Toggle'},
+      d = {':Telescope dap commands<CR>', 'Commands'},
+      c = {':Telescope dap configurations<CR>', 'Configurations'},
+      p = {':Telescope dap list_breakpoints<CR>', 'List Breakpoint'},
+      -- v = {':Telescope dap variables<CR>', 'Variables'},
+      f = {':Telescope dap frames<CR>', 'Stack List'},
+
+      u = {':lua require"dap".up()<CR>', 'Stack Up'},
+      n = {':lua require"dap".down()<CR>', 'Stack Down'},
+      r = {':lua require"dap".repl.open({}, "vsplit")<CR>', 'Open REPL'},
+      v = {
+        name = '+Variables',
+        h = {':lua require"dap.ui.variables".hover()<CR>', 'Hover'},
+        v = {':lua require"dap.ui.variables".visual_hover()<CR>', 'Visual Hover'},
+        -- s = {':lua require"dap.ui.variables".scopes()<CR>', 'Scopes'},
+      },
+      h = { ':lua require"dap.ui.widgets".hover()<CR>', 'Widgets'},
+      w = { ':lua local widgets=require"dap.ui.widgets";widgets.centered_float(widgets.scopes)<CR>', ' Widget Float'},
     },
   },
 })

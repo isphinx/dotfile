@@ -15,11 +15,7 @@ cmd "packadd packer.nvim"
 return require('packer').startup(function()
 	-- Plugins manager, remove the branch field when that branch is merged
 	-- in the main branch.
-	use({
-		'wbthomason/packer.nvim',
-		branch = 'fix/premature-display-opening',
-    run = ':PackerSync',
-	})
+	use({ 'wbthomason/packer.nvim', run = ':PackerSync' })
 
 	-- Auxiliar functions for using Lua in Neovim
 	use('svermeulen/vimpeccable')
@@ -29,17 +25,12 @@ return require('packer').startup(function()
 
 	-- Colorschemes
 	use({ 'GustavoPrietoP/doom-themes.nvim' })
-	use({ 'glepnir/zephyr-nvim' })
-	use({ 'folke/tokyonight.nvim' })
+	-- use({ 'glepnir/zephyr-nvim' })
+	-- use({ 'folke/tokyonight.nvim' })
   use({'projekt0n/github-nvim-theme'})
 
-
-
 	-- File tree
-	use({
-		'kyazdani42/nvim-tree.lua',
-		requires = { 'kyazdani42/nvim-web-devicons' },
-	})
+	-- use({ 'kyazdani42/nvim-tree.lua', requires = { 'kyazdani42/nvim-web-devicons' } })
 
 	-- Statusline
 	use({ 'glepnir/galaxyline.nvim' })
@@ -70,8 +61,6 @@ return require('packer').startup(function()
 	-----[[-------------]]-----
 	---     GIT RELATED     ---
 	-----]]-------------[[-----
-	-- Git gutter better alternative, written in Lua
-	-- can be disabled to use your own git gutter plugin
 	use({ 'lewis6991/gitsigns.nvim' })
   use({ 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' })
 
@@ -106,22 +95,16 @@ return require('packer').startup(function()
 	use({ 'lukas-reineke/indent-blankline.nvim' })
 
 	-- Comments
-	-- can be disabled to use your own comments plugin
-	-- use({ 'b3nj5m1n/kommentary' })
-	--use({ 'scrooloose/nerdcommenter' })
 	use({ 'b3nj5m1n/kommentary' })
 
 	use({ 'tpope/vim-surround' })
 
-	-----[[-------------]]-----
 	---     Web Related     ---
-	-----]]-------------[[-----
-	-- Fastest colorizer without external dependencies!
 	use({ 'norcalli/nvim-colorizer.lua' })
 
 	-- HTTP Client support
 	-- Depends on bayne/dot-http to work!
-	use({ 'bayne/vim-dot-http' })
+	-- use({ 'bayne/vim-dot-http' })
 
 	-- Emmet plugin
 	use({ 'mattn/emmet-vim' })
@@ -138,5 +121,9 @@ return require('packer').startup(function()
 	use({ 'p00f/nvim-ts-rainbow' })
 
 	use({ 'sunjon/shade.nvim' })
+
+  use({'mfussenegger/nvim-dap'})
+  use({'theHamsta/nvim-dap-virtual-text'})
+  use({'nvim-telescope/telescope-dap.nvim'})
 end)
 
