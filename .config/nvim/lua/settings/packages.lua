@@ -31,6 +31,8 @@ return require('packer').startup(function()
 	use({ 'GustavoPrietoP/doom-themes.nvim' })
 	use({ 'glepnir/zephyr-nvim' })
 	use({ 'folke/tokyonight.nvim' })
+  use({'projekt0n/github-nvim-theme'})
+
 
 
 	-- File tree
@@ -71,9 +73,9 @@ return require('packer').startup(function()
 	-- Git gutter better alternative, written in Lua
 	-- can be disabled to use your own git gutter plugin
 	use({ 'lewis6991/gitsigns.nvim' })
+  use({ 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' })
 
 	-- Built-in LSP Config
-	-- NOTE: It should not be disabled if you are going to use LSP!
 	use({ 'neovim/nvim-lspconfig' })
 	-- Completion plugin
 	-- can be disabled to use your own completion plugin
@@ -101,10 +103,7 @@ return require('packer').startup(function()
 	-- can be disabled to use your own autopairs
 
 	-- Indent Lines
-	use({
-		'lukas-reineke/indent-blankline.nvim',
-		branch = 'lua',
-	})
+	use({ 'lukas-reineke/indent-blankline.nvim' })
 
 	-- Comments
 	-- can be disabled to use your own comments plugin
@@ -138,5 +137,6 @@ return require('packer').startup(function()
 
 	use({ 'p00f/nvim-ts-rainbow' })
 
+	use({ 'sunjon/shade.nvim' })
 end)
 

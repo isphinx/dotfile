@@ -15,7 +15,7 @@ apply_options(
     backup = false, -- disable backup
     cursorline = true, -- enable cursorline
     expandtab = true, -- use spaces instead of tabs
-    autowrite = true, -- autowrite buffer when it's not focused
+    -- autowrite = true, -- autowrite buffer when it's not focused
     hidden = true, -- keep hidden buffers
     hlsearch = true, -- highlight matching search
     ignorecase = true, -- case insensitive on search
@@ -70,11 +70,12 @@ apply_options(
   }
 )
 
-vim.cmd('colorscheme zephyr')
+-- vim.cmd('colorscheme zephyr')
 vim.cmd('syntax enable')
 vim.cmd('set termguicolors')
 vim.cmd('colorscheme tokyonight')
 vim.cmd('set wrap')
+vim.cmd('autocmd Filetype php setlocal ts=4 sw=4 sts=0 expandtab')
 
 require('nvim-autopairs').setup({
   disable_filetype = { "TelescopePrompt" , "vim" },
@@ -106,3 +107,67 @@ require('gitsigns').setup({
     changedelete = {hl = 'GitSignsChange', text = '▌', numhl='GitSignsChangeNr', linehl='GitSignsChangeLn'},
   },
 })
+
+require("github-theme").setup({ themeStyle = "dimmed" })
+
+-- let g:indent_blankline_char = '▏'
+vim.cmd([[
+  let g:indent_blankline_char = ' '
+  let g:indent_blankline_show_end_of_line = v:true
+  let g:indent_blankline_use_treesitter = v:true
+  let g:indent_blankline_filetype_exclude = ['help','dashboard','dashpreview','NvimTree','coc-explorer','startify','vista','sagahover']
+
+  highlight IndentBlanklineChar1 guibg=#2E3F00 guifg=#788898 gui=nocombine
+  highlight IndentBlanklineChar2 guibg=#003A00 guifg=#788898 gui=nocombine
+  highlight IndentBlanklineChar3 guibg=#33003C guifg=#788898 gui=nocombine
+  highlight IndentBlanklineChar4 guibg=#002B2F guifg=#788898 gui=nocombine
+  highlight IndentBlanklineSpaceChar1 guibg=#2E3F00 gui=nocombine
+  highlight IndentBlanklineSpaceChar2 guibg=#003A00 gui=nocombine
+  highlight IndentBlanklineSpaceChar3 guibg=#33003C gui=nocombine
+  highlight IndentBlanklineSpaceChar4 guibg=#002B2F gui=nocombine
+
+  let g:indent_blankline_char_highlight_list = ['IndentBlanklineChar1', 'IndentBlanklineChar2', 'IndentBlanklineChar3', 'IndentBlanklineChar4']
+  let g:indent_blankline_space_char_highlight_list = ['IndentBlanklineSpaceChar1', 'IndentBlanklineSpaceChar2', 'IndentBlanklineSpaceChar3', 'IndentBlanklineSpaceChar4']
+  let g:indent_blankline_show_trailing_blankline_indent=v:false
+]])
+
+require 'colorizer'.setup {
+  '*';
+  css = { rgb_fn = true; };
+  html = { names = true; };
+}
+
+require'shade'.setup({
+  overlay_opacity = 40,
+  opacity_step = 1,
+})
+
+require'lsp_signature'.on_attach()
+
+require("neogit").setup {
+  disable_signs = false,
+  disable_context_highlighting = false,
+  disable_commit_confirmation = false,
+  -- customize displayed signs
+  signs = {
+    -- { CLOSED, OPENED }
+    section = { ">", "v" },
+    item = { ">", "v" },
+    hunk = { "", "" },
+  },
+  integrations = {
+    -- Neogit only provides inline diffs. If you want a more traditional way to look at diffs, you can use `sindrets/diffview.nvim`.
+    -- The diffview integration enables the diff popup, which is a wrapper around `sindrets/diffview.nvim`.
+    --
+    -- Requires you to have `sindrets/diffview.nvim` installed.
+    -- use { 
+    --   'TimUntersberger/neogit', 
+    --   requires = { 
+    --     'nvim-lua/plenary.nvim',
+    --     'sindrets/diffview.nvim' 
+    --   }
+    -- }
+    --
+    diffview = false  
+  },
+}

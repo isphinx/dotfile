@@ -28,14 +28,15 @@ Map('i', '<expr> <CR>', Fn['compe#confirm']('<CR>'), opts)
 Map('i', '<expr> <C-e>', Fn['compe#close']('<C-e>'), opts)
 Map('i', '<expr> <C-f>', Fn['compe#scroll']({ delta = '+4' }), opts)
 Map('i', '<expr> <C-d>', Fn['compe#scroll']({ delta = '-4' }), opts)
-Map('n', 'gR', ':Gitsigns reset_hunk<CR>', opts)
+-- Map('n', 'gR', ':Gitsigns reset_hunk<CR>', opts)
 Map('n', 'gh', ':Gitsigns preview_hunk<CR>', opts)
+-- Map('n', 'gb', ':Gitsigns blame_line<CR>', opts)
 Map('n', 'gcc', '<Plug>kommentary_line_increase', opts)
 Map('v', 'gc', '<Plug>kommentary_visual_default', opts)
 Map('n', 'gd', ':lua vim.lsp.buf.definition()<CR>', opts) -- gd: jump to definitionA
 Map('n', 'gr', ':Lspsaga lsp_finder<CR>', opts) -- gr: go to reference
 Map('n', 'gi', ':lua vim.lsp.buf.implementation()<CR>', opts) -- gi: buf implementation
-Map('n', 'gs', ':lua require("lspsaga.floaterm").open_float_terminal("gitui")<CR>', opts) -- gi: buf implementation
+-- Map('n', 'gs', ':lua require("lspsaga.floaterm").open_float_terminal("lazygit")<CR>', opts) -- gi: buf implementation
 Map('n', 'ca', ':Lspsaga code_action<CR>', opts) -- ca: code actions
 Map('n', '<C-q>', ':Lspsaga close_floaterm<CR>', opts) -- gi: buf implementation
 Map('n', 'K', ':Lspsaga hover_doc<CR>', opts) -- K: hover doc
@@ -112,6 +113,8 @@ wk.register({
       name = '+git',
       r = { ':Gitsigns reset_hunk<CR>', 'Reset hunk' },
       h = { ':Gitsigns preview_hunk<CR>', 'Preview hunk' },
+      b = { ':Gitsigns blame_line<CR>', 'Blame line' },
+      s = { ':Neogit kind=vsplit<CR>', 'Neogit' },
     },
   },
 })

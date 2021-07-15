@@ -88,6 +88,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/lucas/.local/share/nvim/site/pack/packer/start/galaxyline.nvim"
   },
+  ["github-nvim-theme"] = {
+    loaded = true,
+    path = "/Users/lucas/.local/share/nvim/site/pack/packer/start/github-nvim-theme"
+  },
   ["gitsigns.nvim"] = {
     loaded = true,
     path = "/Users/lucas/.local/share/nvim/site/pack/packer/start/gitsigns.nvim"
@@ -115,6 +119,10 @@ _G.packer_plugins = {
   ["minimap.vim"] = {
     loaded = true,
     path = "/Users/lucas/.local/share/nvim/site/pack/packer/start/minimap.vim"
+  },
+  neogit = {
+    loaded = true,
+    path = "/Users/lucas/.local/share/nvim/site/pack/packer/start/neogit"
   },
   ["nvim-autopairs"] = {
     loaded = true,
@@ -167,6 +175,10 @@ _G.packer_plugins = {
   ["rooter.nvim"] = {
     loaded = true,
     path = "/Users/lucas/.local/share/nvim/site/pack/packer/start/rooter.nvim"
+  },
+  ["shade.nvim"] = {
+    loaded = true,
+    path = "/Users/lucas/.local/share/nvim/site/pack/packer/start/shade.nvim"
   },
   ["snippets.nvim"] = {
     loaded = true,
