@@ -28,6 +28,7 @@ return require('packer').startup(function()
 	-- use({ 'glepnir/zephyr-nvim' })
 	-- use({ 'folke/tokyonight.nvim' })
   use({'projekt0n/github-nvim-theme'})
+	use({ 'kyazdani42/nvim-web-devicons' })
 
 	-- File tree
 	-- use({ 'kyazdani42/nvim-tree.lua', requires = { 'kyazdani42/nvim-web-devicons' } })
@@ -125,5 +126,7 @@ return require('packer').startup(function()
   use({'mfussenegger/nvim-dap'})
   use({'theHamsta/nvim-dap-virtual-text'})
   use({'nvim-telescope/telescope-dap.nvim'})
+  use({'nvim-telescope/telescope-fzy-native.nvim'})
+  use({'nvim-telescope/telescope-fzf-writer.nvim'})
 end)
 

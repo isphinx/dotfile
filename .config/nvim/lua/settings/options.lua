@@ -73,7 +73,7 @@ apply_options(
 -- vim.cmd('colorscheme zephyr')
 vim.cmd('syntax enable')
 vim.cmd('set termguicolors')
-vim.cmd('colorscheme tokyonight')
+--vim.cmd('colorscheme tokyonight')
 vim.cmd('set wrap')
 vim.cmd('autocmd Filetype php setlocal ts=4 sw=4 sts=0 expandtab')
 
@@ -100,9 +100,9 @@ require'compe'.setup {
 
 require('gitsigns').setup({
 	signs = {
-    add          = {hl = 'GitSignsAdd'   , text = '▌', numhl='GitSignsAddNr'   , linehl='GitSignsAddLn'},
-    change       = {hl = 'GitSignsChange', text = '▌', numhl='GitSignsChangeNr', linehl='GitSignsChangeLn'},
-    delete       = {hl = 'GitSignsDelete', text = '_', numhl='GitSignsDeleteNr', linehl='GitSignsDeleteLn'},
+    add          = {hl = 'GitSignsAdd'   , text = '▌', numhl='GitSignsAdd'   , linehl='GitSignsAddLn'},
+    change       = {hl = 'GitSignsChange', text = '▌', numhl='GitSignsChange', linehl='GitSignsChangeLn'},
+    delete       = {hl = 'GitSignsDelete', text = '_', numhl='GitSignsDelete', linehl='GitSignsDeleteLn'},
     topdelete    = {hl = 'GitSignsDelete', text = '‾', numhl='GitSignsDeleteNr', linehl='GitSignsDeleteLn'},
     changedelete = {hl = 'GitSignsChange', text = '▌', numhl='GitSignsChangeNr', linehl='GitSignsChangeLn'},
   },

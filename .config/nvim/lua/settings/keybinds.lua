@@ -83,7 +83,7 @@ wk.register({
       y = { ':file<CR>', 'file name' },
       p = { ':Telescope git_files theme=get_ivy<CR>', 'Find files' },
       d = { ':Telescope grep_string theme=get_ivy<CR>', 'Find word' },
-      w = { ':Telescope live_grep theme=get_ivy<CR>', 'Find word' },
+      w = { ':lua require("telescope").extensions.fzf_writer.grep(require("telescope.themes").get_ivy({}))<CR>', 'Find word' },
       r = { ':Telescope oldfiles theme=get_ivy<CR>', 'Recently opened files' },
       s = { ':w<CR>', 'Save file' },
     },

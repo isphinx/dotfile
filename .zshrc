@@ -103,7 +103,7 @@ source $ZSH/oh-my-zsh.sh
 # alias tree="find . -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'"
 # alias mmysql="mysql -h127.0.0.1 -uroot -p123456 -Ddb_traversing"
 alias co="open -a \"Visual Studio Code\""
-alias fzf="sk"
+# alias fzf="sk"
 alias vi=nvim
 alias rm="trash -r"
 hash -d code=~/code
