@@ -8,15 +8,17 @@ telescope.setup({
     find_command = {'rg', '--no-heading', '--with-filename', '--line-number', '--column', '--smart-case'},
     mappings = {
       i = {
+        ["jl"] = actions.close,
         ["<C-j>"] = actions.move_selection_next,
         ["<C-k>"] = actions.move_selection_previous,
         ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
-        ["jl"] = actions.close,
+        ["<C-c>"] = actions.delete_buffer,
         ["<CR>"] = actions.select_default + actions.center
       },
       n = {
         ["<C-j>"] = actions.move_selection_next,
         ["<C-k>"] = actions.move_selection_previous,
+        ["<C-c>"] = actions.delete_buffer,
         ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
       }
     }

@@ -78,9 +78,8 @@ wk.register({
   ['<leader>'] = {
     f = {
       name = '+file',
-      --c = { ':e $MYVIMRC<CR>', 'Edit Neovim configuration' },
-      f = { ':Telescope file_browser theme=get_ivy<CR>', 'Find files' },
       y = { ':file<CR>', 'file name' },
+      f = { ':Telescope file_browser theme=get_ivy cwd=%:p:h<CR>', 'Find files' },
       p = { ':Telescope git_files theme=get_ivy<CR>', 'Find files' },
       d = { ':Telescope grep_string theme=get_ivy<CR>', 'Find word' },
       w = { ':lua require("telescope").extensions.fzf_writer.grep(require("telescope.themes").get_ivy({}))<CR>', 'Find word' },
@@ -123,6 +122,7 @@ wk.register({
       name = '+debug',
       s = {':lua require"dap".stop()<CR>', 'Stop Debug'},
       l = {':lua require"dap".continue()<CR>', 'Start Debug'},
+      k = {':lua require"dap".disconnect()<CR>', 'Disconnect Debug'},
       b = {':lua require"dap".toggle_breakpoint()<CR>', 'Breakpoint Toggle'},
       d = {':Telescope dap commands<CR>', 'Commands'},
       c = {':Telescope dap configurations<CR>', 'Configurations'},
