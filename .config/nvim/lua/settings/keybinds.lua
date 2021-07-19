@@ -31,7 +31,7 @@ Map('n', 'gd', ':lua vim.lsp.buf.definition()<CR>', opts) -- gd: jump to definit
 Map('n', 'gr', ':Lspsaga lsp_finder<CR>', opts) -- gr: go to reference
 Map('n', 'gi', ':lua vim.lsp.buf.implementation()<CR>', opts) -- gi: buf implementation
 Map('n', 'ca', ':Lspsaga code_action<CR>', opts) -- ca: code actions
-Map('n', '<C-q>', ':Lspsaga close_floaterm<CR>', opts) -- gi: buf implementation
+Map('n', 'wq', ':Lspsaga close_floaterm<CR>', opts) -- gi: buf implementation
 Map('n', 'K', ':Lspsaga hover_doc<CR>', opts) -- K: hover doc
 Map('n', '<C-p>', ':Lspsaga diagnostic_jump_prev<CR>', opts) -- Control+p: Jump to previous diagnostic
 Map('n', '<C-n>', ':Lspsaga diagnostic_jump_next<CR>', opts) -- Control+n: Jump to next diagnostic
@@ -39,9 +39,9 @@ Map('n', '<C-f>', ':lua require("lspsaga.action").smart_scroll_with_saga(1)<CR>'
 Map('n', '<C-b>', "lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>") -- Control+b: Scroll up documents
 Cmd('command! -nargs=0 LspVirtualTextToggle lua require("lsp/virtual_text").toggle()')
 
-Map('n', '<S-k>', ':lua require("dap").step_out()<CR>', opts)
-Map('n', '<S-l>', ':lua require("dap").step_into()<CR>', opts)
-Map('n', '<S-j>', ':lua require("dap").step_over()<CR>', opts)
+Map('n', '<C-k>', ':lua require("dap").step_out()<CR>', opts)
+Map('n', '<C-l>', ':lua require("dap").step_into()<CR>', opts)
+Map('n', '<C-j>', ':lua require("dap").step_over()<CR>', opts)
 
 Map('n', '<Tab>', ':bp<CR>', opts)
 Map('n', '<esc>', ':noh<CR>', opts)
