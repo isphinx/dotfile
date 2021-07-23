@@ -57,9 +57,9 @@ apply_options(
     sidescroll = 2, -- make scrolling better
     sidescrolloff = 15, -- make scrolling better
     synmaxcol = 500, -- set limit for syntax highlighting in a single line
-    shiftwidth = 2, -- set indentation width
-    tabstop = 2, -- tabsize
-    softtabstop = 2,
+    shiftwidth = 4, -- set indentation width
+    tabstop = 4, -- tabsize
+    softtabstop = 4,
     textwidth = 140,
     -- redrawtime = 1500,
     redrawtime = 10000,
@@ -75,7 +75,8 @@ vim.cmd('syntax enable')
 vim.cmd('set termguicolors')
 --vim.cmd('colorscheme tokyonight')
 vim.cmd('set wrap')
-vim.cmd('autocmd Filetype php setlocal ts=4 sw=4 sts=0 expandtab')
+vim.cmd('autocmd Filetype jsx setlocal ts=2 sw=2 sts=0 expandtab')
+vim.cmd('autocmd Filetype js setlocal ts=2 sw=2 sts=0 expandtab')
 
 require('nvim-autopairs').setup({
   disable_filetype = { "TelescopePrompt" , "vim" },
@@ -106,6 +107,18 @@ require('gitsigns').setup({
     topdelete    = {hl = 'GitSignsDelete', text = '‾', numhl='GitSignsDeleteNr', linehl='GitSignsDeleteLn'},
     changedelete = {hl = 'GitSignsChange', text = '▌', numhl='GitSignsChangeNr', linehl='GitSignsChangeLn'},
   },
+  word_diff = true,
+  use_internal_diff = true,
+  numhl = true,
+  linehl = true,
+  use_decoration_api = true,
+  current_line_blame = true,
+  current_line_blame_delay = 1000,
+  current_line_blame_position = 'eol',
+  sign_priority = 6,
+  update_debounce = 100,
+  status_formatter = nil, -- Use default
+  keymaps = {},
 })
 
 require("github-theme").setup({ themeStyle = "dimmed" })
@@ -161,7 +174,7 @@ require("neogit").setup {
 local dap = require('dap')
 vim.fn.sign_define('DapBreakpoint', {text='🔴', texthl='', linehl='TSDanger', numhl=''})
 vim.fn.sign_define('DapStopped', {text='🟢', texthl='', linehl='TSNote', numhl=''})
-vim.g.dap_virtual_text = 'all frames';
+vim.g.dap_virtual_text = true
 
 dap.adapters.php = {
   type = 'executable',

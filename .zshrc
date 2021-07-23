@@ -106,6 +106,7 @@ alias co="open -a \"Visual Studio Code\""
 # alias fzf="sk"
 alias vi=nvim
 alias rm="trash -r"
+alias ls="exa --icons --git"
 hash -d code=~/code
 
 function t()

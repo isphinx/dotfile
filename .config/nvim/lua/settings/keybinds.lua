@@ -31,7 +31,7 @@ Map('n', 'gd', ':lua vim.lsp.buf.definition()<CR>', opts) -- gd: jump to definit
 Map('n', 'gr', ':Lspsaga lsp_finder<CR>', opts) -- gr: go to reference
 Map('n', 'gi', ':lua vim.lsp.buf.implementation()<CR>', opts) -- gi: buf implementation
 Map('n', 'ca', ':Lspsaga code_action<CR>', opts) -- ca: code actions
-Map('n', 'wq', ':Lspsaga close_floaterm<CR>', opts) -- gi: buf implementation
+Map('n', 'jl', ':Lspsaga close_floaterm<CR>', opts) -- gi: buf implementation
 Map('n', 'K', ':Lspsaga hover_doc<CR>', opts) -- K: hover doc
 Map('n', '<C-p>', ':Lspsaga diagnostic_jump_prev<CR>', opts) -- Control+p: Jump to previous diagnostic
 Map('n', '<C-n>', ':Lspsaga diagnostic_jump_next<CR>', opts) -- Control+n: Jump to next diagnostic
@@ -44,6 +44,7 @@ Map('n', '<C-l>', ':lua require("dap").step_into()<CR>', opts)
 Map('n', '<C-j>', ':lua require("dap").step_over()<CR>', opts)
 
 Map('n', '<Tab>', ':bp<CR>', opts)
+Map('n', '<C-Tab>', ':bn<CR>', opts)
 Map('n', '<esc>', ':noh<CR>', opts)
 
 ---[[-----------------]]---
@@ -63,7 +64,7 @@ Map('n', 'q', '<Nop>')          -- Disable recording
 wk.register({
   ['<leader>'] = {
     b = {
-      name = '+buffer',
+      name = ' buffer',
       d = { ':bd<CR>', 'Close buffer' },
 --      f = { ':FormatWrite<CR>', 'Format buffer' },
       f = { ':!deno fmt %<CR>', 'Format buffer' },
@@ -77,7 +78,7 @@ wk.register({
 wk.register({
   ['<leader>'] = {
     f = {
-      name = '+file',
+      name = ' file',
       y = { ':file<CR>', 'file name' },
       f = { ':Telescope file_browser theme=get_ivy cwd=%:p:h<CR>', 'Find files' },
       p = { ':Telescope git_files theme=get_ivy<CR>', 'Find files' },
@@ -93,7 +94,7 @@ wk.register({
 wk.register({
   ['<leader>'] = {
     t = {
-      name = '+toggle',
+      name = ' toggle',
       c = { ':Telescope colorscheme<CR>', 'Change colorscheme' },
       m = { ':MinimapToggle<CR>', 'Toggle Minimap' },
       t = { ':Lspsaga open_floaterm<CR>', 'Toggle terminal' },
@@ -106,7 +107,7 @@ wk.register({
 wk.register({
   ['<leader>'] = {
     g = {
-      name = '+git',
+      name = ' git',
       r = { ':Gitsigns reset_hunk<CR>', 'Reset Hunk' },
       h = { ':Gitsigns preview_hunk<CR>', 'Preview Hunk' },
       b = { ':Gitsigns blame_line<CR>', 'Blame Line' },
@@ -119,7 +120,7 @@ wk.register({
 wk.register({
   ['<leader>'] = {
     d = {
-      name = '+debug',
+      name = ' debug',
       s = {':lua require"dap".stop()<CR>', 'Stop Debug'},
       l = {':lua require"dap".continue()<CR>', 'Start Debug'},
       k = {':lua require"dap".disconnect()<CR>', 'Disconnect Debug'},
@@ -133,14 +134,8 @@ wk.register({
       u = {':lua require"dap".up()<CR>', 'Stack Up'},
       n = {':lua require"dap".down()<CR>', 'Stack Down'},
       r = {':lua require"dap".repl.open({}, "vsplit")<CR>', 'Open REPL'},
-      v = {
-        name = '+Variables',
-        h = {':lua require"dap.ui.variables".hover()<CR>', 'Hover'},
-        v = {':lua require"dap.ui.variables".visual_hover()<CR>', 'Visual Hover'},
-        -- s = {':lua require"dap.ui.variables".scopes()<CR>', 'Scopes'},
-      },
-      h = { ':lua require"dap.ui.widgets".hover()<CR>', 'Widgets'},
-      w = { ':lua local widgets=require"dap.ui.widgets";widgets.centered_float(widgets.scopes)<CR>', ' Widget Float'},
+      h = {':lua require"dap.ui.variables".hover()<CR>', 'Widgets'},
+      w = {':lua local widgets=require"dap.ui.widgets";widgets.centered_float(widgets.scopes)<CR>', ' Widget Float'},
     },
   },
 })
