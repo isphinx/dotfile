@@ -75,8 +75,8 @@ vim.cmd('syntax enable')
 vim.cmd('set termguicolors')
 --vim.cmd('colorscheme tokyonight')
 vim.cmd('set wrap')
-vim.cmd('autocmd Filetype jsx setlocal ts=2 sw=2 sts=0 expandtab')
-vim.cmd('autocmd Filetype js setlocal ts=2 sw=2 sts=0 expandtab')
+vim.cmd('autocmd Filetype javascriptreact setlocal ts=2 sw=2 sts=0 expandtab')
+vim.cmd('autocmd Filetype javascript setlocal ts=2 sw=2 sts=0 expandtab')
 
 require('nvim-autopairs').setup({
   disable_filetype = { "TelescopePrompt" , "vim" },
@@ -110,9 +110,9 @@ require('gitsigns').setup({
   word_diff = true,
   use_internal_diff = true,
   numhl = true,
-  linehl = true,
+  linehl = false,
   use_decoration_api = true,
-  current_line_blame = true,
+  current_line_blame = false,
   current_line_blame_delay = 1000,
   current_line_blame_position = 'eol',
   sign_priority = 6,
@@ -125,24 +125,25 @@ require("github-theme").setup({ themeStyle = "dimmed" })
 
 -- let g:indent_blankline_char = '▏'
 vim.cmd([[
-  let g:indent_blankline_char = ' '
+  let g:indent_blankline_char = '▏'
   let g:indent_blankline_show_end_of_line = v:true
   let g:indent_blankline_use_treesitter = v:true
   let g:indent_blankline_filetype_exclude = ['help','dashboard','dashpreview','NvimTree','coc-explorer','startify','vista','sagahover']
 
-  hi IndentChar1 guibg=#2E3F00 guifg=#788898 gui=nocombine
-  hi IndentChar2 guibg=#003A00 guifg=#788898 gui=nocombine
-  hi IndentChar3 guibg=#33003C guifg=#788898 gui=nocombine
-  hi IndentChar4 guibg=#002B2F guifg=#788898 gui=nocombine
-  hi IndentSpaceChar1 guibg=#2E3F00 gui=nocombine
-  hi IndentSpaceChar2 guibg=#003A00 gui=nocombine
-  hi IndentSpaceChar3 guibg=#33003C gui=nocombine
-  hi IndentSpaceChar4 guibg=#002B2F gui=nocombine
+  hi IndentChar1 guifg=#bae1ff gui=nocombine
+  hi IndentChar2 guifg=#efcfaa gui=nocombine
+  hi IndentChar2 guifg=#b071e3 gui=nocombine
+  hi IndentChar4 guifg=#ef83aa gui=nocombine
+  hi IndentChar5 guifg=#efefaa gui=nocombine
+  hi IndentChar6 guifg=#aaefb9 gui=nocombine
+  hi IndentChar7 guifg=#ee82ee gui=nocombine
 
-  let g:indent_blankline_char_highlight_list = ['IndentChar1', 'IndentChar2', 'IndentChar3', 'IndentChar4']
-  let g:indent_blankline_space_char_highlight_list = ['IndentSpaceChar1', 'IndentSpaceChar2', 'IndentSpaceChar3', 'IndentSpaceChar4']
+  let g:indent_blankline_char_highlight_list = ['IndentChar1', 'IndentChar2', 'IndentChar3', 'IndentChar4', 'IndentChar5', 'IndentChar6', 'IndentChar7']
   let g:indent_blankline_show_trailing_blankline_indent=v:false
 ]])
+
+vim.g.indent_blankline_show_current_context = true
+vim.g.indent_blankline_context_patterns = {'class', 'function', 'method', '^if', '^while', '^for', '^object', '^table', 'block', 'arguments'}
 
 require 'colorizer'.setup {
   '*';

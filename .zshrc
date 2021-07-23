@@ -153,7 +153,7 @@ source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 export PATH="/usr/local/opt/ncurses/bin:$PATH"
-export PATH="/usr/local/Cellar/php@7.4/7.4.21/bin:$PATH"
+export PATH="/usr/local/Cellar/php@7.4/7.4.21_1/bin:$PATH"
 export LDFLAGS="-L/usr/local/opt/ncurses/lib"
 export CPPFLAGS="-I/usr/local/opt/ncurses/include"
 export PKG_CONFIG_PATH="/usr/local/opt/ncurses/lib/pkgconfig"
