@@ -1,4 +1,4 @@
-require "plugins.statusline"
+-- require "plugins.statusline"
 require "plugins.rooter"
 require "plugins.telescope"
 require "plugins.lsp"

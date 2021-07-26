@@ -3,13 +3,13 @@ local saga = require 'lspsaga'
 require('lspsaga').init_lsp_saga {
 -- add your config value here
 -- default value
--- use_saga_diagnostic_sign = true
--- error_sign = '',
--- warn_sign = '',
--- hint_sign = '',
--- infor_sign = '',
--- dianostic_header_icon = '   ',
--- code_action_icon = ' ',
+use_saga_diagnostic_sign = true,
+error_sign = ' ',
+warn_sign = ' ',
+hint_sign = ' ',
+-- infor_sign = ' ',
+dianostic_header_icon = '   ',
+code_action_icon = ' ',
 -- code_action_prompt = {
 --   enable = true,
 --   sign = true,
@@ -28,9 +28,9 @@ require('lspsaga').init_lsp_saga {
 -- rename_action_keys = {
 --   quit = '<C-c>',exec = '<CR>'  -- quit can be a table
 -- },
-  definition_preview_icon = '  '
+definition_preview_icon = '  ',
 -- "single" "double" "round" "plus"
--- border_style = "single"
+border_style = "single",
 -- rename_prompt_prefix = '➤',
 -- if you don't use nvim-lspconfig you must pass your server name and
 -- the related filetypes into this table

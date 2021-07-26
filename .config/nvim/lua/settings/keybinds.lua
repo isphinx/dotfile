@@ -25,8 +25,8 @@ Map('i', '<expr> <C-e>', Fn['compe#close']('<C-e>'), opts)
 Map('i', '<expr> <C-f>', Fn['compe#scroll']({ delta = '+4' }), opts)
 Map('i', '<expr> <C-d>', Fn['compe#scroll']({ delta = '-4' }), opts)
 Map('n', 'gh', ':Gitsigns preview_hunk<CR>', opts)
-Map('n', 'gcc', '<Plug>kommentary_line_increase', opts)
-Map('v', 'gc', '<Plug>kommentary_visual_default', opts)
+-- Map('n', 'gcc', '<Plug>kommentary_line_increase', opts)
+-- Map('v', 'gc', '<Plug>kommentary_visual_default', opts)
 Map('n', 'gd', ':lua vim.lsp.buf.definition()<CR>', opts) -- gd: jump to definitionA
 Map('n', 'gr', ':Lspsaga lsp_finder<CR>', opts) -- gr: go to reference
 Map('n', 'gi', ':lua vim.lsp.buf.implementation()<CR>', opts) -- gi: buf implementation
@@ -80,7 +80,7 @@ wk.register({
     f = {
       name = ' file',
       y = { ':file<CR>', 'file name' },
-      f = { ':Telescope file_browser theme=get_ivy cwd=%:p:h<CR>', 'Find files' },
+      f = { ':Telescope file_browser theme=get_ivy hidden=true cwd=%:p:h<CR>', 'Find files' },
       p = { ':Telescope git_files theme=get_ivy<CR>', 'Find files' },
       d = { ':Telescope grep_string theme=get_ivy<CR>', 'Find word' },
       w = { ':lua require("telescope").extensions.fzf_writer.grep(require("telescope.themes").get_ivy({}))<CR>', 'Find word' },

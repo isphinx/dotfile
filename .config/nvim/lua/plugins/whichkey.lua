@@ -1,7 +1,7 @@
 require('which-key').setup({
   plugins = {
     marks = false,
-    registers = false,
+    registers = true,
     presets = {
       operators = false,
       motions = true,

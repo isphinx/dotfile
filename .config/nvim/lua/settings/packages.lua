@@ -31,7 +31,10 @@ return require('packer').startup(function()
 	use({ 'kyazdani42/nvim-web-devicons' })
 
 	-- Statusline
-	use({ 'glepnir/galaxyline.nvim' })
+	-- use({ 'glepnir/galaxyline.nvim' })
+    use({ 'hoob3rt/lualine.nvim',
+            requires = {'kyazdani42/nvim-web-devicons', opt = true}})
+
 
 	-- Viewer & finder for LSP symbols and tags
 	use({ 'simrat39/symbols-outline.nvim' })
@@ -43,10 +46,8 @@ return require('packer').startup(function()
 	use({ 'folke/which-key.nvim' })
 
 	---     Fuzzy Search     ---
-	use({
-		'nvim-telescope/telescope.nvim',
-		requires = { { 'nvim-lua/popup.nvim' }, { 'nvim-lua/plenary.nvim' } },
-	})
+	use({'nvim-telescope/telescope.nvim',
+		requires = { { 'nvim-lua/popup.nvim' }, { 'nvim-lua/plenary.nvim' }}})
 
 	---     GIT RELATED     ---
 	use({ 'lewis6991/gitsigns.nvim' })

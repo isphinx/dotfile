@@ -121,7 +121,7 @@ require('gitsigns').setup({
   keymaps = {},
 })
 
-require("github-theme").setup({ themeStyle = "dimmed" })
+require("github-theme").setup({ themeStyle = "dark",hideInactiveStatusline=true })
 
 -- let g:indent_blankline_char = '▏'
 vim.cmd([[
@@ -142,8 +142,9 @@ vim.cmd([[
   let g:indent_blankline_show_trailing_blankline_indent=v:false
 ]])
 
-vim.g.indent_blankline_show_current_context = true
-vim.g.indent_blankline_context_patterns = {'class', 'function', 'method', '^if', '^while', '^for', '^object', '^table', 'block', 'arguments'}
+-- vim.g.indent_blankline_show_current_context = true
+-- vim.g.indent_blankline_context_patterns = {'class', 'function', 'method', '^if', '^while', '^for', '^object', '^table', 'block', 'arguments'}
+vim.g.user_emmet_leader_key=','
 
 require 'colorizer'.setup {
   '*';
@@ -191,4 +192,6 @@ dap.configurations.php = {
     port = 8000
   }
 }
+
+require'lualine'.setup{ options = { theme  = 'github' }}
 
