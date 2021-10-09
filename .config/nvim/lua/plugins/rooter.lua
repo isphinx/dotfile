@@ -3,9 +3,9 @@ require'rooter'.setup {
     patterns = { -- the patterns to find
       '.git/',    -- same as patterns passed to nvim_lsp.util.root_pattern(patterns...)
       '.git',    -- same as patterns passed to nvim_lsp.util.root_pattern(patterns...)
-      --'package.json',
+      'package.json',
       'init.lua',
-      --'.env',
+      '.env',
     },
     non_project_files = "current"
   }

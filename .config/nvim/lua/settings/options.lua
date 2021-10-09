@@ -72,11 +72,14 @@ apply_options(
 
 -- vim.cmd('colorscheme zephyr')
 vim.cmd('syntax enable')
+vim.cmd('set nofoldenable')
 vim.cmd('set termguicolors')
 --vim.cmd('colorscheme tokyonight')
 vim.cmd('set wrap')
 vim.cmd('autocmd Filetype javascriptreact setlocal ts=2 sw=2 sts=0 expandtab')
 vim.cmd('autocmd Filetype javascript setlocal ts=2 sw=2 sts=0 expandtab')
+vim.cmd('autocmd Filetype typescript setlocal ts=2 sw=2 sts=0 expandtab')
+vim.cmd('autocmd Filetype typescriptreact setlocal ts=2 sw=2 sts=0 expandtab')
 
 require('nvim-autopairs').setup({
   disable_filetype = { "TelescopePrompt" , "vim" },
@@ -100,28 +103,26 @@ require'compe'.setup {
 }
 
 require('gitsigns').setup({
-	signs = {
+  signs = {
     add          = {hl = 'GitSignsAdd'   , text = '▌', numhl='GitSignsAdd'   , linehl='GitSignsAddLn'},
     change       = {hl = 'GitSignsChange', text = '▌', numhl='GitSignsChange', linehl='GitSignsChangeLn'},
     delete       = {hl = 'GitSignsDelete', text = '_', numhl='GitSignsDelete', linehl='GitSignsDeleteLn'},
     topdelete    = {hl = 'GitSignsDelete', text = '‾', numhl='GitSignsDeleteNr', linehl='GitSignsDeleteLn'},
     changedelete = {hl = 'GitSignsChange', text = '▌', numhl='GitSignsChangeNr', linehl='GitSignsChangeLn'},
   },
+  diff_opts = {
+    internal=true,
+  },
   word_diff = true,
-  use_internal_diff = true,
   numhl = true,
   linehl = false,
-  use_decoration_api = true,
-  current_line_blame = false,
-  current_line_blame_delay = 1000,
-  current_line_blame_position = 'eol',
   sign_priority = 6,
   update_debounce = 100,
   status_formatter = nil, -- Use default
   keymaps = {},
 })
 
-require("github-theme").setup({ themeStyle = "dark",hideInactiveStatusline=true })
+require("github-theme").setup({ theme_style = "dark" })
 
 -- let g:indent_blankline_char = '▏'
 vim.cmd([[
@@ -181,7 +182,7 @@ vim.g.dap_virtual_text = true
 dap.adapters.php = {
   type = 'executable',
   command = 'node',
-  args = { '/Users/lucas/.vscode/extensions/felixfbecker.php-debug-1.16.1/out/phpDebug.js' }
+  args = { '/Users/lucas/.vscode/extensions/felixfbecker.php-debug-1.19.0/out/phpDebug.js' }
 }
 
 dap.configurations.php = {

@@ -15,13 +15,13 @@ cmd "packadd packer.nvim"
 return require('packer').startup(function()
     -- Plugins manager, remove the branch field when that branch is merged
     -- in the main branch.
-    use({ 'wbthomason/packer.nvim', run = ':PackerSync' })
+    use({ 'wbthomason/packer.nvim' })
 
     -- Auxiliar functions for using Lua in Neovim
     use('svermeulen/vimpeccable')
 
     -- Tree-Sitter
-    use({ 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' })
+    use({ 'nvim-treesitter/nvim-treesitter', config = ':TSUpdate' })
 
     -- Colorschemes
     use({ 'GustavoPrietoP/doom-themes.nvim' })
@@ -111,5 +111,6 @@ return require('packer').startup(function()
     use({'nvim-telescope/telescope-dap.nvim'})
     use({'nvim-telescope/telescope-fzy-native.nvim'})
     use({'nvim-telescope/telescope-fzf-writer.nvim'})
+    use({'pantharshit00/vim-prisma'})
 end)
 

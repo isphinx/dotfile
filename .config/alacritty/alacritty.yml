@@ -115,7 +115,7 @@ font:
   # Italic font face
   italic:
     family: Iosevka Nerd Font
-    style: Medium Italic
+    style: Medium Italic Thin
 
   # Bold italic font face
   bold_italic:
