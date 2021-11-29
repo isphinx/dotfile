@@ -19,11 +19,11 @@ Api.nvim_set_var('mapleader', ' ')
 local opts = { silent = true }
 
 --    LSP Keybindings    --
-Map('i', '<expr> <C-Space>', Fn['compe#complete'](), opts)
-Map('i', '<expr> <CR>', Fn['compe#confirm']('<CR>'), opts)
-Map('i', '<expr> <C-e>', Fn['compe#close']('<C-e>'), opts)
-Map('i', '<expr> <C-f>', Fn['compe#scroll']({ delta = '+4' }), opts)
-Map('i', '<expr> <C-d>', Fn['compe#scroll']({ delta = '-4' }), opts)
+-- Map('i', '<expr> <C-Space>', Fn['compe#complete'](), opts)
+-- Map('i', '<expr> <CR>', Fn['compe#confirm']('<CR>'), opts)
+-- Map('i', '<expr> <C-e>', Fn['compe#close']('<C-e>'), opts)
+-- Map('i', '<expr> <C-f>', Fn['compe#scroll']({ delta = '+4' }), opts)
+-- Map('i', '<expr> <C-d>', Fn['compe#scroll']({ delta = '-4' }), opts)
 Map('n', 'gh', ':Gitsigns preview_hunk<CR>', opts)
 -- Map('n', 'gcc', '<Plug>kommentary_line_increase', opts)
 -- Map('v', 'gc', '<Plug>kommentary_visual_default', opts)
@@ -32,7 +32,8 @@ Map('n', 'gr', ':Lspsaga lsp_finder<CR>', opts) -- gr: go to reference
 Map('n', 'gi', ':lua vim.lsp.buf.implementation()<CR>', opts) -- gi: buf implementation
 Map('n', 'ca', ':Lspsaga code_action<CR>', opts) -- ca: code actions
 Map('n', 'jl', ':Lspsaga close_floaterm<CR>', opts) -- gi: buf implementation
-Map('n', 'K', ':Lspsaga hover_doc<CR>', opts) -- K: hover doc
+Map('n', 'K', ':Lspsaga preview_definition<CR>', opts) -- K: hover doc
+Map('n', 'R', ':Lspsaga rename<CR>', opts) -- K: hover doc
 Map('n', '<C-p>', ':Lspsaga diagnostic_jump_prev<CR>', opts) -- Control+p: Jump to previous diagnostic
 Map('n', '<C-n>', ':Lspsaga diagnostic_jump_next<CR>', opts) -- Control+n: Jump to next diagnostic
 Map('n', '<C-f>', ':lua require("lspsaga.action").smart_scroll_with_saga(1)<CR>', opts) -- Control+f: Scroll down documents
@@ -96,10 +97,12 @@ wk.register({
   ['<leader>'] = {
     t = {
       name = ' toggle',
-      c = { ':Telescope colorscheme<CR>', 'Change colorscheme' },
+      c = { ':Telescope colorscheme theme=get_ivy<CR>', 'Change colorscheme' },
+      d = { ':TodoTelescope theme=get_ivy<CR>', 'Todo list' },
       m = { ':MinimapToggle<CR>', 'Toggle Minimap' },
       t = { ':Lspsaga open_floaterm<CR>', 'Toggle terminal' },
       a = { '<Plug>ColorizeToggle', 'Toggle colorize' },
+      p = { ':Telescope projects theme=get_ivy<CR>', 'Project List' },
     },
   },
 })

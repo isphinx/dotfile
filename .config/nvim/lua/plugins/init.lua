@@ -1,5 +1,5 @@
 -- require "plugins.statusline"
-require "plugins.rooter"
+require "plugins.project"
 require "plugins.telescope"
 require "plugins.lsp"
 require "plugins.whichkey"

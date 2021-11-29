@@ -12,7 +12,7 @@ cmd "packadd packer.nvim"
 
 --cmd "au BufWritePost packages.lua PackerCompile"
 
-return require('packer').startup(function()
+return require('packer').startup(function(use)
     -- Plugins manager, remove the branch field when that branch is merged
     -- in the main branch.
     use({ 'wbthomason/packer.nvim' })
@@ -24,7 +24,7 @@ return require('packer').startup(function()
     use({ 'nvim-treesitter/nvim-treesitter', config = ':TSUpdate' })
 
     -- Colorschemes
-    use({ 'GustavoPrietoP/doom-themes.nvim' })
+    -- use({ 'GustavoPrietoP/doom-themes.nvim' })
     -- use({ 'glepnir/zephyr-nvim' })
     -- use({ 'folke/tokyonight.nvim' })
     use({'projekt0n/github-nvim-theme'})
@@ -33,7 +33,7 @@ return require('packer').startup(function()
     -- Statusline
     -- use({ 'glepnir/galaxyline.nvim' })
     use({ 'hoob3rt/lualine.nvim',
-            requires = {'kyazdani42/nvim-web-devicons', opt = true}})
+        requires = {'kyazdani42/nvim-web-devicons', opt = true}})
 
 
     -- Viewer & finder for LSP symbols and tags
@@ -55,21 +55,25 @@ return require('packer').startup(function()
 
     -- Built-in LSP Config
     use({ 'neovim/nvim-lspconfig' })
-    -- Completion plugin
-    use({
-        'hrsh7th/nvim-compe',
-        requires = {
-            { 'ray-x/lsp_signature.nvim' },
-            { 'onsails/lspkind-nvim' },
-            { 'norcalli/snippets.nvim' },
-        },
-    })
+    use({ 'williamboman/nvim-lsp-installer' })
+    -- Completion pluginPlug
+    use({ 'hrsh7th/cmp-nvim-lsp' })
+    use({ 'hrsh7th/cmp-buffer' })
+    use({ 'hrsh7th/cmp-path' })
+    use({ 'hrsh7th/cmp-cmdline' })
+    use({ 'hrsh7th/nvim-cmp' })
+    use({ 'hrsh7th/cmp-nvim-lsp-signature-help' })
+    use({ 'onsails/lspkind-nvim' })
+    use({ 'ray-x/cmp-treesitter'})
+    use({ 'ray-x/lsp_signature.nvim' })
+    use({ 'hrsh7th/vim-vsnip' })
+    use({ 'hrsh7th/cmp-vsnip' })
 
     -- install lsp saga
     use({ 'glepnir/lspsaga.nvim' })
 
     -- provides the missing `:LspInstall` for `nvim-lspconfig`.
-    use({ 'kabouzeid/nvim-lspinstall' })
+    -- use({ 'kabouzeid/nvim-lspinstall' })
 
     use({ 'lukas-reineke/format.nvim' })
 
@@ -91,13 +95,11 @@ return require('packer').startup(function()
     -- Emmet plugin
     use({ 'mattn/emmet-vim' })
 
-    use({ 'oberblastmeister/rooter.nvim' })
+    use({ 'ahmedkhalf/project.nvim' })
 
-    use { "folke/todo-comments.nvim",
-    requires = "nvim-lua/plenary.nvim",
-    config = function()
-      require("todo-comments").setup({ })
-    end
+    use { 'folke/todo-comments.nvim',
+        requires = 'nvim-lua/plenary.nvim',
+        config = function() require('todo-comments').setup() end
     }
 
     use({ 'p00f/nvim-ts-rainbow' })
@@ -113,4 +115,3 @@ return require('packer').startup(function()
     use({'nvim-telescope/telescope-fzf-writer.nvim'})
     use({'pantharshit00/vim-prisma'})
 end)
-

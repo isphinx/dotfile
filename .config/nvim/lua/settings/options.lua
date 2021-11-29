@@ -70,7 +70,7 @@ apply_options(
   }
 )
 
--- vim.cmd('colorscheme zephyr')
+vim.cmd('colorscheme github_light')
 vim.cmd('syntax enable')
 vim.cmd('set nofoldenable')
 vim.cmd('set termguicolors')
@@ -82,7 +82,7 @@ vim.cmd('autocmd Filetype typescript setlocal ts=2 sw=2 sts=0 expandtab')
 vim.cmd('autocmd Filetype typescriptreact setlocal ts=2 sw=2 sts=0 expandtab')
 
 require('nvim-autopairs').setup({
-  disable_filetype = { "TelescopePrompt" , "vim" },
+  disable_filetype = { "TelescopePrompt" , "vim", "zsh" },
 })
 
 require('nvim-treesitter.configs').setup {
@@ -92,14 +92,6 @@ require('nvim-treesitter.configs').setup {
     extended_mode = true,
     max_file_lines = 1000,
   },
-}
-
-require('snippets').use_suggested_mappings(true)
-
-require'compe'.setup {
-  source = {
-      emmet = true
-    }
 }
 
 require('gitsigns').setup({
@@ -122,7 +114,7 @@ require('gitsigns').setup({
   keymaps = {},
 })
 
-require("github-theme").setup({ theme_style = "dark" })
+require("github-theme").setup({ theme_style = "light", })
 
 -- let g:indent_blankline_char = '▏'
 vim.cmd([[
@@ -158,8 +150,6 @@ require'shade'.setup({
   opacity_step = 1,
 })
 
-require'lsp_signature'.on_attach()
-
 require("neogit").setup {
   disable_signs = false,
   disable_context_highlighting = false,
@@ -177,12 +167,11 @@ require("neogit").setup {
 local dap = require('dap')
 vim.fn.sign_define('DapBreakpoint', {text='🔴', texthl='', linehl='TSDanger', numhl=''})
 vim.fn.sign_define('DapStopped', {text='🟢', texthl='', linehl='TSNote', numhl=''})
-vim.g.dap_virtual_text = true
 
 dap.adapters.php = {
   type = 'executable',
   command = 'node',
-  args = { '/Users/lucas/.vscode/extensions/felixfbecker.php-debug-1.19.0/out/phpDebug.js' }
+  args = { '/Users/lucas/.vscode/extensions/felixfbecker.php-debug-1.21.0/out/phpDebug.js' }
 }
 
 dap.configurations.php = {
@@ -196,3 +185,27 @@ dap.configurations.php = {
 
 require'lualine'.setup{ options = { theme  = 'github' }}
 
+require('kommentary.config').configure_language("default", {
+    prefer_single_line_comments = true,
+})
+require('kommentary.config').configure_language('typescriptreact', {
+    prefer_multi_line_comments = true,
+    single_line_comment_string  = {"/*","*/"},
+})
+require('kommentary.config').configure_language('javascriptreact', {
+    prefer_multi_line_comments = true,
+    single_line_comment_string  = {"/*","*/"},
+})
+require("todo-comments").setup()
+
+require("format").setup {
+    typescript = {
+        {cmd = {"deno fmt --options-single-quote"}}
+    },
+    javascript = {
+        {cmd = {"deno fmt --options-single-quote"}}
+    },
+    json = {
+        {cmd = {"deno fmt"}}
+    }
+}

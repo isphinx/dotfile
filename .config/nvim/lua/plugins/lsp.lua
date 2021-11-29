@@ -30,36 +30,6 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   }
 )
 
--- Signature help
-require('lsp_signature').on_attach()
-
--- Vscode-like pictograms on completion
-require('lspkind').init({
-  with_text = true,
-  symbol_map = {
-    Text = '',
-    Method = 'ƒ',
-    Function = '',
-    Constructor = '',
-    Variable = '',
-    Class = '',
-    Interface = 'ﰮ',
-    Module = '',
-    Property = '',
-    Unit = '',
-    Value = '',
-    Enum = '了',
-    Keyword = '',
-    Snippet = '﬌',
-    Color = '',
-    File = '',
-    Folder = '',
-    EnumMember = '',
-    Constant = '',
-    Struct = '',
-  },
-})
-
 local on_attach = function(client, bufnr)
 local function buf_set_option(...)
     Api.nvim_buf_set_option(bufnr, ...)
@@ -113,52 +83,7 @@ end
 --      LSP Setup      --
 --]]-----------------[[--
 -- https://github.com/kabouzeid/nvim-lspinstall#advanced-configuration-recommended
-local function setup_servers()
-  -- Provide the missing :LspInstall
-  require('lspinstall').setup()
-  local servers = require('lspinstall').installed_servers()
-  for _, server in pairs(servers) do
-    nvim_lsp[server].setup({})
-  end
-end
 
-setup_servers()
-
--- Automatically reload after `:LspInstall <server>` so we don't have to restart neovim
-require('lspinstall').post_install_hook = function()
-  setup_servers() -- reload installed servers
-  Cmd('bufdo e') -- this triggers the FileType autocmd that starts the server
-end
-
---- nvim-compe configuration
-require('compe').setup({
-  enabled = true,
-  autocomplete = true,
-  debug = false,
-  min_length = 2,
-  preselect = 'enable',
-  throttle_time = 80,
-  source_timeout = 200,
-  incomplete_delay = 400,
-  max_abbr_width = 100,
-  max_kind_width = 100,
-  max_menu_width = 100,
-  documentation = true,
-
-  source = {
-    path = true,
-    buffer = true,
-    calc = true,
-    vsnip = true,
-    nvim_lsp = true,
-    nvim_lua = true,
-    spell = true,
-    tags = true,
-    snippets_nvim = true,
-    treesitter = true,
-  },
-
-})
 local t = function(str)
   return Api.nvim_replace_termcodes(str, true, true, true)
 end
@@ -175,15 +100,14 @@ end
 -- Use (s-)tab to:
 --- move to prev/next item in completion menuone
 --- jump to prev/next snippet's placeholder
-_G.tab_complete = function()
-  if Fn.pumvisible() == 1 then
-    return t "<C-n>"
-  elseif check_back_space() then
-    return t "<Tab>"
-  else
-    return Fn['compe#complete']()
-  end
-end
+-- _G.tab_complete = function()
+--   if Fn.pumvisible() == 1 then
+--     return t "<C-n>"
+--   elseif check_back_space() then
+--     return t "<Tab>"
+--   else
+--   end
+-- end
 _G.s_tab_complete = function()
   if Fn.pumvisible() == 1 then
     return t "<C-p>"
@@ -195,10 +119,82 @@ end
 Map("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
 Map("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
 Map("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
-Map("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
+Map("s", "<!-- <S-Tab> -->", "v:lua.s_tab_complete()", {expr = true})
 
 require('nvim-treesitter.configs').setup({
   ensure_installed = { 'javascript' },
   highlight = { enable = true },
   indent = { enable = true },
 })
+
+local lsp_installer = require("nvim-lsp-installer")
+
+-- Register a handler that will be called for all installed servers.
+-- Alternatively, you may also register handlers on specific server instances instead (see example below).
+lsp_installer.on_server_ready(function(server)
+    local opts = {}
+
+    -- (optional) Customize the options passed to the server
+    -- if server.name == "tsserver" then
+    --     opts.root_dir = function() ... end
+    -- end
+
+    -- This setup() function is exactly the same as lspconfig's setup function.
+    -- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
+    server:setup(opts)
+end)
+
+-- Setup nvim-cmp.
+local cmp = require'cmp'
+
+cmp.setup({
+    snippet = {
+      -- REQUIRED - you must specify a snippet engine
+      expand = function(args)
+        vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+        -- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+        -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
+        -- require'snippy'.expand_snippet(args.body) -- For `snippy` users.
+      end,
+    },
+    completion = { completeopt = 'menu,menuone,noinsert' },
+    mapping = {
+        ['<C-j>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+        ['<C-k>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+        ['<Tab>'] = cmp.mapping(cmp.mapping.select_next_item(), { 'i', 's' }),
+        ['<CR>'] = cmp.mapping.confirm({
+            behavior = cmp.ConfirmBehavior.Replace,
+            select = true,
+        })
+    },
+    sources = cmp.config.sources({
+      { name = 'nvim_lsp' },
+      { name = 'nvim_lua' },
+      { name = 'vsnip' },
+      { name = 'path' },
+      { name = 'buffer' },
+      { name = 'treesitter' },
+    })
+})
+
+-- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
+cmp.setup.cmdline('/', {
+    sources = {
+        { name = 'buffer' }
+    }
+})
+
+local lspkind = require('lspkind')
+cmp.setup {
+  formatting = {
+    format = lspkind.cmp_format({with_text = false, menu = ({
+      buffer = "[Buf]",
+      nvim_lsp = "[LSP]",
+      luasnip = "[LuaSnip]",
+      nvim_lua = "[Lua]",
+      latex_symbols = "[Latex]",
+    })}),
+  },
+}
+
+require "lsp_signature".setup()
