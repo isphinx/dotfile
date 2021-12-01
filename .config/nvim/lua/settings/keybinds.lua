@@ -66,7 +66,7 @@ wk.register({
   ['<leader>'] = {
     b = {
       name = ' buffer',
-      d = { ':Bdelete<CR>', 'Close buffer' },
+      d = { ':BDelete this<CR>', 'Close buffer' },
 --      f = { ':FormatWrite<CR>', 'Format buffer' },
       f = { ':!deno fmt %<CR>', 'Format buffer' },
       b = { ':Telescope buffers theme=get_ivy<CR>', 'Select buffer' },

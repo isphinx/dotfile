@@ -85,7 +85,7 @@ return require('packer').startup(function(use)
     use({ 'lukas-reineke/indent-blankline.nvim' })
 
     -- Comments
-    use({ 'b3nj5m1n/kommentary' })
+    use({ 'numToStr/Comment.nvim' })
 
     use({ 'tpope/vim-surround' })
 
@@ -106,7 +106,7 @@ return require('packer').startup(function(use)
 
     use({ 'sunjon/shade.nvim' })
 
-    use({'famiu/bufdelete.nvim'})
+    use({'kazhala/close-buffers.nvim'})
 
     use({'mfussenegger/nvim-dap'})
     use({'theHamsta/nvim-dap-virtual-text'})

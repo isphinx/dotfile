@@ -185,17 +185,8 @@ dap.configurations.php = {
 
 require'lualine'.setup{ options = { theme  = 'github' }}
 
-require('kommentary.config').configure_language("default", {
-    prefer_single_line_comments = true,
-})
-require('kommentary.config').configure_language('typescriptreact', {
-    prefer_multi_line_comments = true,
-    single_line_comment_string  = {"/*","*/"},
-})
-require('kommentary.config').configure_language('javascriptreact', {
-    prefer_multi_line_comments = true,
-    single_line_comment_string  = {"/*","*/"},
-})
+require('Comment').setup()
+
 require("todo-comments").setup()
 
 require("format").setup {
