@@ -32,7 +32,7 @@ Map('n', 'gr', ':Lspsaga lsp_finder<CR>', opts) -- gr: go to reference
 Map('n', 'gi', ':lua vim.lsp.buf.implementation()<CR>', opts) -- gi: buf implementation
 Map('n', 'ca', ':Lspsaga code_action<CR>', opts) -- ca: code actions
 Map('n', 'jl', ':Lspsaga close_floaterm<CR>', opts) -- gi: buf implementation
-Map('n', 'K', ':Lspsaga preview_definition<CR>', opts) -- K: hover doc
+Map('n', 'K', ':Lspsaga signature_help<CR>', opts) -- K: hover doc
 Map('n', 'R', ':Lspsaga rename<CR>', opts) -- K: hover doc
 Map('n', '<C-p>', ':Lspsaga diagnostic_jump_prev<CR>', opts) -- Control+p: Jump to previous diagnostic
 Map('n', '<C-n>', ':Lspsaga diagnostic_jump_next<CR>', opts) -- Control+n: Jump to next diagnostic
@@ -81,7 +81,8 @@ wk.register({
     f = {
       name = ' file',
       y = { ':file<CR>', 'file name' },
-      f = { ':Telescope file_browser theme=get_ivy hidden=true cwd=%:p:h<CR>', 'Find files' },
+      -- f = { ':Telescope file_browser theme=get_ivy hidden=true cwd=%:p:h<CR>', 'Find files' },
+      f = { ':lua require "telescope".extensions.file_browser.file_browser({ cwd = vim.fn.expand("%:p:h"), })<CR>', 'File Browser' },
       p = { ':Telescope git_files theme=get_ivy<CR>', 'Find files' },
       d = { ':Telescope grep_string theme=get_ivy<CR>', 'Find word' },
       w = { ':Telescope live_grep theme=get_ivy<CR>', 'Find word' },

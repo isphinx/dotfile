@@ -28,10 +28,22 @@ telescope.setup({
       minimum_grep_characters = 4,
       minimum_files_characters = 4,
       use_highlighter = true,
-    }
+    },
+    file_browser = {
+      theme = "ivy",
+      mappings = {
+        ["i"] = {
+          -- your custom insert mode mappings
+        },
+        ["n"] = {
+          -- your custom normal mode mappings
+        },
+      },
+    },
   }
 })
 
 telescope.load_extension('dap')
 telescope.load_extension('projects')
+telescope.load_extension('file_browser')
 -- telescope.load_extension('fzy_native')

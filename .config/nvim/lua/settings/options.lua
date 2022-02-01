@@ -57,9 +57,9 @@ apply_options(
     sidescroll = 2, -- make scrolling better
     sidescrolloff = 15, -- make scrolling better
     synmaxcol = 500, -- set limit for syntax highlighting in a single line
-    shiftwidth = 4, -- set indentation width
-    tabstop = 4, -- tabsize
-    softtabstop = 4,
+    shiftwidth = 2, -- set indentation width
+    tabstop = 2, -- tabsize
+    softtabstop = 2,
     textwidth = 140,
     -- redrawtime = 1500,
     redrawtime = 10000,
@@ -70,16 +70,17 @@ apply_options(
   }
 )
 
-vim.cmd('colorscheme github_light')
+-- vim.cmd('colorscheme github_light')
+vim.cmd("colorscheme tokyonight")
 vim.cmd('syntax enable')
 vim.cmd('set nofoldenable')
 vim.cmd('set termguicolors')
---vim.cmd('colorscheme tokyonight')
 vim.cmd('set wrap')
 vim.cmd('autocmd Filetype javascriptreact setlocal ts=2 sw=2 sts=0 expandtab')
 vim.cmd('autocmd Filetype javascript setlocal ts=2 sw=2 sts=0 expandtab')
 vim.cmd('autocmd Filetype typescript setlocal ts=2 sw=2 sts=0 expandtab')
 vim.cmd('autocmd Filetype typescriptreact setlocal ts=2 sw=2 sts=0 expandtab')
+vim.cmd('autocmd Filetype json setlocal ts=2 sw=2 sts=0 expandtab')
 
 require('nvim-autopairs').setup({
   disable_filetype = { "TelescopePrompt" , "vim", "zsh" },
@@ -114,7 +115,7 @@ require('gitsigns').setup({
   keymaps = {},
 })
 
-require("github-theme").setup({ theme_style = "light", })
+-- require("github-theme").setup({ theme_style = "light", })
 
 -- let g:indent_blankline_char = '▏'
 vim.cmd([[
@@ -134,6 +135,19 @@ vim.cmd([[
   let g:indent_blankline_char_highlight_list = ['IndentChar1', 'IndentChar2', 'IndentChar3', 'IndentChar4', 'IndentChar5', 'IndentChar6', 'IndentChar7']
   let g:indent_blankline_show_trailing_blankline_indent=v:false
 ]])
+
+require("indent_blankline").setup {
+    space_char_blankline = " ",
+    char_highlight_list = {
+        "IndentChar1",
+        "IndentChar2",
+        "IndentChar3",
+        "IndentChar4",
+        "IndentChar5",
+        "IndentChar6",
+        "IndentChar7",
+    },
+}
 
 -- vim.g.indent_blankline_show_current_context = true
 -- vim.g.indent_blankline_context_patterns = {'class', 'function', 'method', '^if', '^while', '^for', '^object', '^table', 'block', 'arguments'}
@@ -183,7 +197,8 @@ dap.configurations.php = {
   }
 }
 
-require'lualine'.setup{ options = { theme  = 'github' }}
+-- require'lualine'.setup{ options = { theme  = 'github' }}
+require'lualine'.setup{ options = { theme  = 'tokyonight' }}
 
 require('Comment').setup()
 

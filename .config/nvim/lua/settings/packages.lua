@@ -26,7 +26,8 @@ return require('packer').startup(function(use)
     -- Colorschemes
     -- use({ 'GustavoPrietoP/doom-themes.nvim' })
     -- use({ 'glepnir/zephyr-nvim' })
-    -- use({ 'folke/tokyonight.nvim' })
+    use({ 'folke/tokyonight.nvim' })
+    use({ 'frenzyexists/aquarium-vim' })
     use({'projekt0n/github-nvim-theme'})
     use({ 'kyazdani42/nvim-web-devicons' })
 
@@ -70,7 +71,7 @@ return require('packer').startup(function(use)
     use({ 'hrsh7th/cmp-vsnip' })
 
     -- install lsp saga
-    use({ 'glepnir/lspsaga.nvim' })
+    use({ 'tami5/lspsaga.nvim' })
 
     -- provides the missing `:LspInstall` for `nvim-lspconfig`.
     -- use({ 'kabouzeid/nvim-lspinstall' })
@@ -111,6 +112,7 @@ return require('packer').startup(function(use)
     use({'mfussenegger/nvim-dap'})
     use({'theHamsta/nvim-dap-virtual-text'})
     use({'nvim-telescope/telescope-dap.nvim'})
+    use({'nvim-telescope/telescope-file-browser.nvim'})
     use({'nvim-telescope/telescope-fzy-native.nvim'})
     use({'nvim-telescope/telescope-fzf-writer.nvim'})
     use({'pantharshit00/vim-prisma'})
